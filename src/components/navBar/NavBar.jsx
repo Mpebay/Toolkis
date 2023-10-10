@@ -127,8 +127,8 @@ const NavBar = () => {
         
     },[])
   return (
-    <motion.div className=" bg-[#053b50] pb-3 w-full fixed z-20 top border-b-2 border-[#eea221]">
-        <motion.div animate={{y:!isVisible?"-100%":0}} className={`${isVisible?"flex":"hidden"} text-sm items-center gap-2 justify-center lg:justify-start my-2 lg:px-3`}>
+    <motion.div className=" bg-[#053b50] pb-3 w-full fixed z-20 top-0 border-b-2 border-[#eea221]">
+        <motion.div animate={{y:!isVisible?"-100%":0}} className={`${isVisible?"flex":"hidden"} text-sm items-center gap-2 justify-center lg:justify-start py-2 lg:px-3`}>
           <motion.img
           transition={{delay:1}}
             animate={{opacity:[0,0.5,1]}}

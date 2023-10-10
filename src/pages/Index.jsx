@@ -5,21 +5,7 @@ import NavBar from '../components/navBar/NavBar'
 const Index = () => {
   return (
     <>
- <div className='w-full h-screen'>
-
-            <div className='w-full min-h-32 bg-[#053b50] text-xl text-white p-5 justify-between items-center flex gap-2 '>
-                <div>
-                    <img className='w-10 h-8' src="./public/descarga.png" alt="" />
-                </div>
-                <div className='flex text-sm items-center justify-center'>
-                    <h1>Toolkis</h1>
-                    <img className='w-14 h-10' src="../public/png-clipart-computer-icons-others-miscellaneous-desktop-wallpaper.png" alt="" />
-                </div>
-                <div>
-                    <button>Sign In</button>
-                </div>
-            </div>
-
+ <div className='w-full min-h-screen'>
             <div className='w-full min-h-screen bg-[#f0ebe3] flex flex-col gap-10 p-3'>
                 
                 <div className='w-full min-h-36 relative flex flex-col justify-center gap-2 items-center border-2 bg-[#0e4355b2] rounded-xl shadow-sm shadow-black p-2 border-[#053b50]'>
@@ -104,10 +90,6 @@ const Index = () => {
                     <img className='max-w-2/3 max-h-10 md:max-h-8 ' src="../public/boschlogo.png" alt="" />
                     <img className='max-w-2/3 max-h-20 md:max-h-12 ' src="../public/craftsmanlogo.png" alt="" />
                 </div>
-            </div>
-
-            <div className='w-full h-32 bg-[#053b50]'>
-
             </div>
         </div>
     </>
