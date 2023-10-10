@@ -82,51 +82,27 @@ const NavBar = () => {
         });
       });
     };
-  
-    useEffect(() => {
+
+    useEffect(()=>{
       const handleScroll = () => {
         const scrollY = window.scrollY;
-        const scrollThreshold = 200;
+        const scrollHeight = document.documentElement.scrollHeight;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollFromBottom = scrollHeight - (scrollY + clientHeight);
+        const scrollThresholdFromBottom = 200;
   
-        if (scrollY > scrollThreshold) {
-          setIsVisible(false);
-        } else {
-          setIsVisible(true);
-        }
+        setIsFooter(scrollFromBottom > scrollThresholdFromBottom);
+        setIsVisible(scrollY <= 200); 
       };
-      
+  
       window.addEventListener("scroll", handleScroll);
   
       return () => {
         window.removeEventListener("scroll", handleScroll);
       };
-    }, []);
-
-    useEffect(()=>{
-        const handleScroll = () => {
-            const scrollY = window.scrollY;
-            const scrollHeight = document.documentElement.scrollHeight;
-            const clientHeight = document.documentElement.clientHeight;
-        
-            const scrollFromBottom = scrollHeight - (scrollY + clientHeight);
-        
-            const scrollThresholdFromBottom = 200;
-        
-            if (scrollFromBottom < scrollThresholdFromBottom) {
-              setIsFooter(false)
-            }else{
-                setIsFooter(true)
-            }
-          }
-        
-          window.addEventListener("scroll", handleScroll);
-        
-          return () => {
-            window.removeEventListener("scroll", handleScroll);
-          };
-        
     },[])
   return (
+    <>
     <motion.div className=" bg-[#053b50] pb-3 w-full fixed z-20 top-0 border-b-2 border-[#eea221]">
         <motion.div animate={{y:!isVisible?"-100%":0}} className={`${isVisible?"flex":"hidden"} text-sm items-center gap-2 justify-center lg:justify-start py-2 lg:px-3`}>
           <motion.img
@@ -172,7 +148,7 @@ const NavBar = () => {
           ) : null}
           </AnimatePresence>
           <div className="bg-[#053b50] hidden lg:flex text-white font-medium tracking-widest justify-start gap-5 px-5 relative z-20">
-            <Link onClick={()=> setShow(!show)} className=" hover:text-[#eea221] cursor-pointer flex">Categories <img className={`h-6 ${show? "rotate-180":""}`}  src={arrowR} alt="colapse" /></Link>
+            <p onClick={()=> setShow(!show)} className=" hover:text-[#eea221] cursor-pointer flex">Categories <img className={`h-6 ${show? "rotate-180":""}`}  src={arrowR} alt="colapse" /></p>
             <Link className=" hover:text-[#eea221] cursor-pointer">Section</Link>
             <Link className=" hover:text-[#eea221] cursor-pointer">Section</Link>
             <Link className=" hover:text-[#eea221] cursor-pointer">DIY</Link>
@@ -185,6 +161,10 @@ const NavBar = () => {
       {isFooter && <motion.img className="fixed bottom-[15px] right-[10px] h-14 cursor-pointer " whileHover={{scale:1.3}} initial={{x:"50%"}} animate={{x:0}} exit={{x:"200%"}} src={cart} alt="cart" />}
       </AnimatePresence>
       </motion.div>
+      <div className="h-[23vh] bg-[#f0ebe3] w-full">
+        {/* ---------------------------------------------------------------------- */}
+      </div>
+    </>
   )
 }
 
