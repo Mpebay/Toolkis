@@ -10,12 +10,14 @@ import DisplayWeb from "../../components/navBar/DisplayWeb";
 import arrowR from "../../../public/arrow-down-svgrepo-com.svg"
 import favorite from "../../../public/heart-svgrepo-com.svg"
 import cart from "../../../public/cart-large-svgrepo-com.svg"
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
     const [search, setSearch] = useState(false);
     const [show, setShow] = useState(false);
     const [categories,setCategories] =useState([])
     const [isVisible, setIsVisible] = useState(true);
+    const [isFooter , setIsFooter] = useState(true)
   const [subMenu , setSubMenu] = useState(false)
      useEffect(()=>{
       const catData = [
@@ -84,7 +86,6 @@ const NavBar = () => {
     useEffect(() => {
       const handleScroll = () => {
         const scrollY = window.scrollY;
-        // Establecer una posición de scroll a partir de la cual quieres ocultar el div
         const scrollThreshold = 200;
   
         if (scrollY > scrollThreshold) {
@@ -93,14 +94,38 @@ const NavBar = () => {
           setIsVisible(true);
         }
       };
-  
+      
       window.addEventListener("scroll", handleScroll);
   
-      // Limpiar el event listener cuando el componente se desmonte
       return () => {
         window.removeEventListener("scroll", handleScroll);
       };
     }, []);
+
+    useEffect(()=>{
+        const handleScroll = () => {
+            const scrollY = window.scrollY;
+            const scrollHeight = document.documentElement.scrollHeight;
+            const clientHeight = document.documentElement.clientHeight;
+        
+            const scrollFromBottom = scrollHeight - (scrollY + clientHeight);
+        
+            const scrollThresholdFromBottom = 200;
+        
+            if (scrollFromBottom < scrollThresholdFromBottom) {
+              setIsFooter(false)
+            }else{
+                setIsFooter(true)
+            }
+          }
+        
+          window.addEventListener("scroll", handleScroll);
+        
+          return () => {
+            window.removeEventListener("scroll", handleScroll);
+          };
+        
+    },[])
   return (
     <motion.div className=" bg-[#053b50] pb-3 w-full fixed z-20 top border-b-2 border-[#eea221]">
         <motion.div animate={{y:!isVisible?"-100%":0}} className={`${isVisible?"flex":"hidden"} text-sm items-center gap-2 justify-center lg:justify-start my-2 lg:px-3`}>
@@ -147,17 +172,17 @@ const NavBar = () => {
           ) : null}
           </AnimatePresence>
           <div className="bg-[#053b50] hidden lg:flex text-white font-medium tracking-widest justify-start gap-5 px-5 relative z-20">
-            <p onClick={()=> setShow(!show)} className=" hover:text-[#eea221] cursor-pointer flex">Categories <img className={`h-6 ${show? "rotate-180":""}`}  src={arrowR} alt="colapse" /></p>
-            <p className=" hover:text-[#eea221] cursor-pointer">Section</p>
-            <p className=" hover:text-[#eea221] cursor-pointer">Section</p>
-            <p className=" hover:text-[#eea221] cursor-pointer">DIY</p>
-            <p className=" hover:text-[#eea221] cursor-pointer">Hot Sales</p>
-            <p className=" hover:text-[#eea221] cursor-pointer">Contact Us</p>
+            <Link onClick={()=> setShow(!show)} className=" hover:text-[#eea221] cursor-pointer flex">Categories <img className={`h-6 ${show? "rotate-180":""}`}  src={arrowR} alt="colapse" /></Link>
+            <Link className=" hover:text-[#eea221] cursor-pointer">Section</Link>
+            <Link className=" hover:text-[#eea221] cursor-pointer">Section</Link>
+            <Link className=" hover:text-[#eea221] cursor-pointer">DIY</Link>
+            <Link className=" hover:text-[#eea221] cursor-pointer">Hot Sales</Link>
+            <Link className=" hover:text-[#eea221] cursor-pointer">Contact Us</Link>
           </div>
       <AnimatePresence>
       {show && <DisplayWeb key={"DisplayWeb"}/>}
       {show && <Display key={"Display"} categories={categories} show={show} subMenu={subMenu} setSubMenu={setSubMenu}setShow={setShow} handleList={handleList} /> }
-      <motion.img className="fixed bottom-[15px] right-[10px] h-14 cursor-pointer " whileHover={{scale:1.3}} src={cart} alt="cart" />
+      {isFooter && <motion.img className="fixed bottom-[15px] right-[10px] h-14 cursor-pointer " whileHover={{scale:1.3}} initial={{x:"50%"}} animate={{x:0}} exit={{x:"200%"}} src={cart} alt="cart" />}
       </AnimatePresence>
       </motion.div>
   )
