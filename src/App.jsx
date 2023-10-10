@@ -1,3 +1,4 @@
+import Register from "./pages/Register"
 import Index from "./pages/Index"
 
 function App() {
@@ -6,7 +7,7 @@ function App() {
   return (
     <>
       <div>
-        <Index/>
+        <Register/>
       </div>
     </>
   )
