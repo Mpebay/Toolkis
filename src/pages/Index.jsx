@@ -1,10 +1,11 @@
 import React from 'react'
+import NavBar from '../components/navBar/NavBar'
 
 
 const Index = () => {
-    return (
-
-        <div className='w-full h-screen'>
+  return (
+    <>
+ <div className='w-full h-screen'>
 
             <div className='w-full min-h-32 bg-[#053b50] text-xl text-white p-5 justify-between items-center flex gap-2 '>
                 <div>
@@ -105,25 +106,14 @@ const Index = () => {
                 </div>
             </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
             <div className='w-full h-32 bg-[#053b50]'>
 
             </div>
         </div>
-
-
-    )
+    </>
+  )
 }
 
 export default Index
+
+ 
