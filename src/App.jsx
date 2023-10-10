@@ -1,13 +1,13 @@
-import Index from "./pages/Index"
+import { RouterProvider } from "react-router-dom"
+import router from "../router/router"
+
 
 function App() {
   
 
   return (
     <>
-      <div>
-        <Index/>
-      </div>
+      <RouterProvider router={router}/>
     </>
   )
 }
