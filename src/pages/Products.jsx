@@ -10,11 +10,14 @@ const Products = () => {
   const dispatch = useDispatch()
   const [products, setProducts]= useState([])
   const allItems = useSelector((store)=>store.itemsReducer.allItems)
-  console.log(allItems)
-  useEffect(()=>{
-    dispatch(allProducts()),
-    setProducts(allItems)
-  }, [])
+
+  useEffect(() => {
+    if (allItems.length === 0) {
+      dispatch(allProducts());
+    }
+
+    setProducts(allItems);
+  }, [allItems]);
 
   return (
     <div className='w-full min-h-screen bg-[#f0ebe3] flex flex-col md:flex-row p-3'>
