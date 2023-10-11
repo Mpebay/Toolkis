@@ -9,9 +9,9 @@ const Login = () => {
         </div>
         
         <form className='min-w-1/2 min-h-5/6 rounded-lg gap-3 p-4  border-2 flex flex-col border-[#053b50] bg-[#0e4355b2]' action="">
-            <label htmlFor="">Email:</label>
+            <label className='text-white' htmlFor="">Email:</label>
             <input className='border-[#053b50] border-2' type="text" />
-            <label htmlFor="">Password:</label>
+            <label className='text-white' htmlFor="">Password:</label>
             <input className='border-[#053b50] border-2' type="text" />
             <button className='w-2/3 h-7 self-center text-xs text-white rounded-lg text-center bg-[#053b50]'>Login</button>
         </form>
