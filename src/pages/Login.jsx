@@ -8,7 +8,7 @@ const Login = () => {
             <h3 className='font-semibold text-sm'>Sign in, and keep enjoying our shopping experience!</h3>
         </div>
         
-        <form className='min-w-1/2 min-h-5/6 rounded-lg gap-3 p-4 text-white border-2 flex flex-col border-[#053b50] bg-[#0e4355b2]' action="">
+        <form className='min-w-1/2 min-h-5/6 rounded-lg gap-3 p-4  border-2 flex flex-col border-[#053b50] bg-[#0e4355b2]' action="">
             <label htmlFor="">Email:</label>
             <input className='border-[#053b50] border-2' type="text" />
             <label htmlFor="">Password:</label>
