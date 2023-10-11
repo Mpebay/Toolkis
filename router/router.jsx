@@ -7,6 +7,7 @@ import Register from "../src/pages/Register"
 import Details from "../src/pages/Details"
 import Cart from "../src/components/Cart";
 import Contact from "../src/pages/Contact";
+import Favorite from "../src/pages/Favorite";
 
 
 const router = createBrowserRouter([
@@ -27,6 +28,8 @@ const router = createBrowserRouter([
     element:<Cart/>},
         {path: "/contact",
     element:<Contact/>},
+        {path: "/favorite",
+    element:<Favorite/>},
     ]  
 }
 ])
