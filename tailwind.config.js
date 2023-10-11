@@ -6,6 +6,15 @@ export default {
   ],
   theme: {
     extend: {},
+    extend: {
+      backgroundImage: {
+        'metal-bg': "url('./public/metalbg.png')",
+        'wood-bg': "url('./public/wood-bg.jpg')",
+        'halloween-bg': "url('./public/halloweenbg.jpg')"
+      }
+    },
   },
-  plugins: [],
+  plugins: [
+    require("tailwind-scrollbar"),
+  ],
 }
