@@ -9,7 +9,7 @@ const Register = () => {
         </div>
         
         <div className='w-full min-h-5/6 rounded-lg gap-3 p-4 flex flex-col md:flex-row md:w-2/3 md:gap-10'>
-            <form className='w-full min-h-5/6 rounded-lg gap-3 p-4 text-white border-2 flex flex-col border-[#053b50] bg-[#0e4355b2]' action="">
+            <form className='w-full min-h-5/6 rounded-lg gap-3 p-4 border-2 flex flex-col border-[#053b50] bg-[#0e4355b2]' action="">
                 <label htmlFor="">Email:</label>
                 <input className='border-[#053b50] border-2' type="text" />
                 <label htmlFor="">Password:</label>
@@ -20,7 +20,7 @@ const Register = () => {
                 <input className='border-[#053b50] border-2' type="text" />
                 <button className='w-2/3 h-7 self-center text-xs text-white rounded-lg text-center bg-[#053b50]'>Register</button>
             </form>
-            <img className='max-md:hidden md:w-1/2 object-cover' src="../public/specialdrill.jpg" alt="" />
+            <img className='max-md:hidden md:w-1/2 object-cover' src="../public/specialdrill.j" alt="" />
         </div>    
     </div>
   )
