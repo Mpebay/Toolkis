@@ -25,10 +25,10 @@ const Cart = () => {
             </div>
             <div className='w-5/6 text-sm flex gap-2 justify-between'>
                 <div className='flex gap-4'>
-                    <button className='bg-[#7D9D9C] rounded-md p-2 hover:scale-110 transform duration-300'>Add more products</button>
+                    <button className='bg-[#7D9D9C] rounded-md text-white p-2 hover:scale-110 transform duration-300'>Add more products</button>
                     <button className='bg-red-700 text-white rounded-md p-2 hover:bg-red-700 hover:scale-110 transform duration-300'>Clear cart</button>
                 </div>
-                <button className='bg-[#7D9D9C] rounded-md p-2 hover:bg-emerald-600 hover:scale-110 hover:font-bold transform duration-300'>Complete purchase</button>
+                <button className='bg-[#7D9D9C] rounded-md p-2 hover:bg-emerald-600 text-white hover:scale-110 hover:font-bold transform duration-300'>Complete purchase</button>
             </div>
             
         </div>

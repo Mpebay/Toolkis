@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
 import allProducts from '../../redux/actions/actionProducts'
+import { Link } from 'react-router-dom'
 
 
 
@@ -10,10 +11,13 @@ const Products = () => {
   const [products, setProducts]= useState([])
   const allItems = useSelector((store)=>store.itemsReducer.allItems)
   console.log(allItems)
-  useEffect(()=>{
-    dispatch(allProducts()),
-    setProducts(allItems)
-  }, [])
+  useEffect(() => {
+    if (allItems.length === 0) {
+      dispatch(allProducts());
+    }
+
+    setProducts(allItems);
+  }, [allItems]);
 
   return (
     <div className='w-full min-h-screen bg-[#f0ebe3] flex flex-col md:flex-row p-3'>
@@ -50,7 +54,7 @@ const Products = () => {
       </div>
 
       <div>
-        <div className='flex-col items-center justify-center text-center mt-5'>
+        <div className='flex-col items-center justify-center max-md:mb-3 text-center mt-5'>
             <h2>Order:</h2>
             <select className='w-36 border-2 border-[#0e4355b2]' name="" id="">
               <option value="">Price ↓</option>
@@ -64,12 +68,12 @@ const Products = () => {
         <div  className='cardcontainer w-full min-h-3/4  flex flex-wrap p-2 items-center justify-center gap-5 md:my-5'>
         {products && products.map(product=>{
            
-         return <div key={product?._id} className='h-25 w-36 flex flex-col border border-[#053b50] rounded-md gap-2 items-center md:w-52 md:h-80 justify-between hover:scale-110 transform duration-300 shadow-gray-600 shadow-lg bg-[#0e4355b2] p-1 '>
+         return <div key={product?._id} className='h-25 w-36 flex flex-col border border-[#053b50] rounded-md gap-2 items-center md:w-52 md:h-80 justify-between md:hover:scale-110 md:transform md:duration-300 shadow-gray-600 shadow-lg bg-[#0e4355b2] p-1 '>
             <h3 className='text-xs text-white font-bold pb-2'>{product?.name}</h3>
-            <img className='w-full h-2/3 border md:w-full md:h-40 md:object-cover' src={product?.photo} alt="" />
+            <img className='w-full h-20 bg-white border md:w-full md:h-40 md:object-contain' src={product?.photo} alt="" />
             <p className='text-white text-xs line-clamp-3'>{product?.description}</p>
             <p className='text-white w-3/4 text-end font-semibold'>${product?.price}</p>
-            <button className='w-full h-5 text-xs text-white rounded-lg text-center bg-[#053b50]'>See more</button>
+            <Link to={`/${product?._id}/details`} className='w-full h-5 text-xs text-white rounded-lg text-center bg-[#053b50]'>See more</Link>
           </div>
         
         })}

@@ -8,15 +8,15 @@ const Register = () => {
             <h3 className='font-semibold text-sm'>Sign up, and unlock full access to our website!</h3>
         </div>
         
-        <div className='w-full min-h-5/6 rounded-lg gap-3 p-4 flex flex-col md:flex-row md:w-2/3 md:gap-10'>
+        <div className='w-full  min-h-5/6 rounded-lg gap-3 p-4 flex flex-col md:flex-row md:w-2/3 md:gap-10'>
             <form className='w-full min-h-5/6 rounded-lg gap-3 p-4 border-2 flex flex-col border-[#053b50] bg-[#0e4355b2]' action="">
-                <label htmlFor="">Email:</label>
+                <label className='text-white' htmlFor="">Email:</label>
                 <input className='border-[#053b50] border-2' type="text" />
-                <label htmlFor="">Password:</label>
+                <label className='text-white' htmlFor="">Password:</label>
                 <input className='border-[#053b50] border-2' type="text" />
-                <label htmlFor="">Photo:</label>
+                <label className='text-white' htmlFor="">Photo:</label>
                 <input className='border-[#053b50] border-2' type="text" />
-                <label htmlFor="">Phone number (optional):</label>
+                <label className='text-white' htmlFor="">Phone number (optional):</label>
                 <input className='border-[#053b50] border-2' type="text" />
                 <button className='w-2/3 h-7 self-center text-xs text-white rounded-lg text-center bg-[#053b50]'>Register</button>
             </form>
