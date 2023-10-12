@@ -19,8 +19,12 @@ const DisplayWeb = ({categoriesAndSub}) => {
             return <li key={sub.id} className="flex cursor-pointer hover:text-[#eea221]">{sub.name_sub}</li>})
          }
         </ul>
+      </div>
+      <Link className=" hover:text-[#eea221] cursor-pointer">DIY</Link>
+      <Link className=" hover:text-[#eea221] cursor-pointer">Hot Sales</Link>
+      <Link className=" hover:text-[#eea221] cursor-pointer">Contact Us</Link>
+      <Link className=" hover:text-[#eea221] cursor-pointer">Work with us</Link>
       </div>})}
-     
     </motion.div>
   );
 };

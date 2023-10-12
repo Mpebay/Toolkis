@@ -6,11 +6,11 @@ import Products from "../src/pages/Products"
 import Register from "../src/pages/Register"
 import Details from "../src/pages/Details"
 import Cart from "../src/components/Cart";
+import DIY from "../src/pages/DIY";
+import WorkWithUs from "../src/pages/workWithUs";
 import Contact from "../src/pages/Contact";
 import Favorite from "../src/pages/Favorite";
 import AdminPanel from "../src/pages/AdminPanel";
-
-
 
 const router = createBrowserRouter([
     {path: "/",
@@ -28,6 +28,10 @@ const router = createBrowserRouter([
     element:<Details/>},
         {path: "/cart",
     element:<Cart/>},
+        {path:"/diy",
+    element: <DIY/>},
+        {path:"/workwithus",
+    element: <WorkWithUs/>}
         {path: "/contact",
     element:<Contact/>},
         {path: "/favorite",
