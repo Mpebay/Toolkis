@@ -66,6 +66,7 @@ const DisplayWeb = () => {
       <Link className=" hover:text-[#eea221] cursor-pointer">DIY</Link>
       <Link className=" hover:text-[#eea221] cursor-pointer">Hot Sales</Link>
       <Link className=" hover:text-[#eea221] cursor-pointer">Contact Us</Link>
+      <Link className=" hover:text-[#eea221] cursor-pointer">Work with us</Link>
     </motion.div>
   );
 };
