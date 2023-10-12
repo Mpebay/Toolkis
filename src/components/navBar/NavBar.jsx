@@ -129,6 +129,7 @@ const NavBar = () => {
             <Link className=" hover:text-[#eea221] cursor-pointer">DIY</Link>
             <Link className=" hover:text-[#eea221] cursor-pointer">Hot Sales</Link>
             <Link to={"/contact"} className=" hover:text-[#eea221] cursor-pointer">Contact Us</Link>
+            <Link to={"/workwithus"} className=" hover:text-[#eea221] cursor-pointer">Work with us</Link>
           </div>
       <AnimatePresence>
       {cartShow && <ModalCart key={"modalCart"} setCartShow={setCartShow} cartShow={cartShow}/>}
