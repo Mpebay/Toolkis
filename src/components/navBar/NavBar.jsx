@@ -11,77 +11,48 @@ import arrowR from "../../../public/arrow-down-svgrepo-com.svg"
 import favorite from "../../../public/heart-svgrepo-com.svg"
 import cart from "../../../public/cart-large-svgrepo-com.svg"
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import allCategories from "../../../redux/actions/actionCategories";
+import ModalCart from "../cart/modalCart";
 
 const NavBar = () => {
     const [search, setSearch] = useState(false);
     const [show, setShow] = useState(false);
-    const [categories,setCategories] =useState([])
+    const [categoriesAndSub,setCategoriesAndSub] =useState([])
     const [isVisible, setIsVisible] = useState(true);
     const [isFooter , setIsFooter] = useState(true)
-  const [subMenu , setSubMenu] = useState(false)
-     useEffect(()=>{
-      const catData = [
-        {
-          id: 165464,
-          name: "products 1",
-          subProducts: ["pro1", "pro2", "pro3"],
-          state: false,
-        },
-        { id: 27465, name: "products 2",subProducts: ["pro4", "pro5", "pro6"], state: false },
-        {
-          id: 3564654,
-          name: "products 3",
-          subProducts: ["pro7", "pro8", "pro9"],
-          state: false,
-        },
-        {
-          id: 464566544554,
-          name: "products 4",
-          subProducts: ["pro10", "pro11", "pro12"],
-          state: false},
-        {
-          id: 464566456554,
-          name: "products 4",
-          subProducts: ["pro10", "pro11", "pro12"],
-          state: false},
-        {
-          id: 46456654654,
-          name: "products 4",
-          subProducts: ["pro10", "pro11", "pro12"],
-          state: false},
-        {
-          id: 4645664545654,
-          name: "products 4",
-          subProducts: ["pro10", "pro11", "pro12"],
-          state: false},
-        {
-          id: 4645646545654,
-          name: "products 4",
-          subProducts: ["pro10", "pro11", "pro12"],
-          state: false},
-        {
-          id: 464554656654,
-          name: "products 4",
-          subProducts: ["pro10", "pro11", "pro12"],
-          state: false},
-        {
-          id: 4645654534,
-          name: "products 4",
-          subProducts: ["pro10", "pro11", "pro12"],
-          state: false},
-      ];
-      setCategories(catData)
-    },[])
-    const handleList = (id) => {
-      setCategories((prevCategories) => {
-        return prevCategories.map((category) => {
-          if (category.id === id) {
-            return { ...category, state: !category.state };
+    const [subMenu , setSubMenu] = useState(false)
+    const [cartShow , setCartShow] = useState(false)
+
+    const {categories} = useSelector((store) => store.itemsReducer )
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+      if (categoriesAndSub.length === 0) {
+        dispatch(allCategories())
+        const categoryArrayShow = categories.map(category =>{
+          const cat = {
+            name:category.category,
+            id: category.id,
+            sub:category.sub,
+            show:false
           }
-          return category;
-        });
-      });
-    };
+          return cat
+        })
+        setCategoriesAndSub(categoryArrayShow)
+      }
+    },[dispatch, categories])
+
+     const handleList = (id) => {
+       setCategoriesAndSub((prevCategories) => {
+         return prevCategories.map((category) => {
+           if (category.id === id) {
+             return { ...category, show: !category.show };
+           }
+           return category;
+         });
+       });
+     };
 
     useEffect(()=>{
       const handleScroll = () => {
@@ -105,17 +76,21 @@ const NavBar = () => {
     <>
     <motion.div className=" bg-[#053b50] pb-3 w-full fixed z-20 top-0 border-b-2 border-[#eea221]">
         <motion.div animate={{y:!isVisible?"-100%":0}} className={`${isVisible?"flex":"hidden"} text-sm items-center gap-2 justify-center lg:justify-start py-2 lg:px-3`}>
+          <Link to={"/"}>
           <motion.img
           transition={{delay:1}}
             animate={{opacity:[0,0.5,1]}}
             className=" h-16"
             src="../public/png-clipart-computer-icons-others-miscellaneous-desktop-wallpaper.png"
-            alt=""
+            alt="Logo"
           />
-          <motion.h1 initial={{x:"-100%"}} animate={{x:0}}  className=" flex text-6xl items-center text-cyan-50 ">
-            <span className="text-[#eea221] font-extrabold text-6xl">T</span>
-            oolki<span className="text-[#eea221] ">s.</span>
-          </motion.h1>
+          </Link>
+          <Link to={"/"}>
+            <motion.h1 initial={{x:"-100%"}} animate={{x:0}}  className=" flex text-6xl items-center text-cyan-50 ">
+              <span className="text-[#eea221] font-extrabold text-6xl">T</span>
+              oolki<span className="text-[#eea221] ">s.</span>
+            </motion.h1>
+          </Link>
         </motion.div>
         <div className="w-full min-h-32  text-xl text-white p-3 justify-between items-center flex ">
           <img
@@ -156,9 +131,10 @@ const NavBar = () => {
             <Link to={"/contact"} className=" hover:text-[#eea221] cursor-pointer">Contact Us</Link>
           </div>
       <AnimatePresence>
-      {show && <DisplayWeb key={"DisplayWeb"}/>}
-      {show && <Display key={"Display"} categories={categories} show={show} subMenu={subMenu} setSubMenu={setSubMenu}setShow={setShow} handleList={handleList} /> }
-      {isFooter && <motion.img className="fixed bottom-[15px] right-[10px] h-14 cursor-pointer " whileHover={{scale:1.3}} initial={{x:"50%"}} animate={{x:0}} exit={{x:"200%"}} src={cart} alt="cart" />}
+      {cartShow && <ModalCart key={"modalCart"} setCartShow={setCartShow} cartShow={cartShow}/>}
+      {show && <DisplayWeb categoriesAndSub={categoriesAndSub} key={"DisplayWeb"}/>}
+      {show && <Display key={"Display"} categoriesAndSub={categoriesAndSub} show={show}  subMenu={subMenu} setSubMenu={setSubMenu}setShow={setShow} handleList={handleList} /> } 
+      {isFooter && <motion.img onClick={()=>setCartShow(!cartShow)} className="fixed bottom-[15px] right-[10px] h-14 cursor-pointer " whileHover={{scale:1.3}} initial={{x:"50%"}} animate={{x:0}} exit={{x:"200%"}} src={cart} alt="cart" />}
       </AnimatePresence>
       </motion.div>
       <div className="h-[23vh] bg-[#f0ebe3] w-full">

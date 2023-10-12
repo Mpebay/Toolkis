@@ -8,6 +8,8 @@ import Details from "../src/pages/Details"
 import Cart from "../src/components/Cart";
 import Contact from "../src/pages/Contact";
 import Favorite from "../src/pages/Favorite";
+import AdminPanel from "../src/pages/AdminPanel";
+
 
 
 const router = createBrowserRouter([
@@ -30,6 +32,8 @@ const router = createBrowserRouter([
     element:<Contact/>},
         {path: "/favorite",
     element:<Favorite/>},
+        {path: "/adminpanel",
+    element:<AdminPanel/>},
     ]  
 }
 ])
