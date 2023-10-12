@@ -76,17 +76,21 @@ const NavBar = () => {
     <>
     <motion.div className=" bg-[#053b50] pb-3 w-full fixed z-20 top-0 border-b-2 border-[#eea221]">
         <motion.div animate={{y:!isVisible?"-100%":0}} className={`${isVisible?"flex":"hidden"} text-sm items-center gap-2 justify-center lg:justify-start py-2 lg:px-3`}>
+          <Link to={"/"}>
           <motion.img
           transition={{delay:1}}
             animate={{opacity:[0,0.5,1]}}
             className=" h-16"
             src="../public/png-clipart-computer-icons-others-miscellaneous-desktop-wallpaper.png"
-            alt=""
+            alt="Logo"
           />
-          <motion.h1 initial={{x:"-100%"}} animate={{x:0}}  className=" flex text-6xl items-center text-cyan-50 ">
-            <span className="text-[#eea221] font-extrabold text-6xl">T</span>
-            oolki<span className="text-[#eea221] ">s.</span>
-          </motion.h1>
+          </Link>
+          <Link to={"/"}>
+            <motion.h1 initial={{x:"-100%"}} animate={{x:0}}  className=" flex text-6xl items-center text-cyan-50 ">
+              <span className="text-[#eea221] font-extrabold text-6xl">T</span>
+              oolki<span className="text-[#eea221] ">s.</span>
+            </motion.h1>
+          </Link>
         </motion.div>
         <div className="w-full min-h-32  text-xl text-white p-3 justify-between items-center flex ">
           <img

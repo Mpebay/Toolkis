@@ -6,7 +6,6 @@ import allProducts from '../../redux/actions/actionProducts'
 import { Link } from 'react-router-dom'
 import favorite from "../../public/heart-svgrepo-com.svg"
 import actionCart from '../../redux/actions/actionCart'
-import allProducts from '../../redux/actions/actionProducts';
 import allCategories from '../../redux/actions/actionCategories';
 
 
@@ -15,18 +14,16 @@ const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedSubcategory, setSelectedSubcategory] = useState('');
   const [sortOrder, setSortOrder] = useState('asc');
-  const { allItems, categories } = useSelector((store) => store.itemsReducer);
+  const { allItems,category,subcategories } = useSelector((store) => store.itemsReducer);
   const dispatch = useDispatch()
-  const [products, setProducts]= useState([])
-
+  
   useEffect(() => {
     if (allItems.length === 0) {
       dispatch(allProducts());
       dispatch(allCategories());
-      dispatch(allSubcategories());
     }
   }, []);
-
+  
   const filteredProducts = allItems
     .filter((product) => {
       // Filter by search term
@@ -36,7 +33,7 @@ const Products = () => {
       const matchesCategory = selectedCategory === '' || product.category.toLowerCase() === selectedCategory.toLowerCase();
 
       // Filter by selected subcategory
-      const matchesSubcategory = selectedSubcategory === '' || product.subcategory === selectedSubcategory;
+      const matchesSubcategory = selectedSubcategory === '' || product.subcategory.toLowerCase() === selectedSubcategory.toLowerCase();
 
       return matchesSearchTerm && matchesCategory && matchesSubcategory;
     })
@@ -47,7 +44,8 @@ const Products = () => {
         return b.name.localeCompare(a.name);
       }
     });
-
+    
+    // console.log(filteredProducts,"tuhermana");
   const handleFavorite = (id)=>{
     const favorite = allItems.find(item => item._id === id)
     console.log(favorite);
@@ -56,7 +54,7 @@ const Products = () => {
 
   return (
     <div className='w-full min-h-screen bg-[#f0ebe3] flex flex-col md:flex-row p-3'>
-      <div className='filterbox rounded-md border-2 mb-2 border-[#053b50] p-4 gap-3 flex flex-col items-center justify-center md:w-1/4 md:h-2/3 md: md:py-10 md:sticky top-10 md:gap-20 bg-[#0e4355b2]'>
+      <div className='filterbox rounded-md border-2 mb-2 border-[#053b50] p-4 gap-3 flex flex-col items-center justify-center md:w-[25vw] md:h-1/3 md:py-10 md:sticky top-10 md:gap-20 bg-[#0e4355b2]'>
         <h1 className='text-white font-semibold'>Filters:</h1>
         <input
           type="search"
@@ -75,9 +73,9 @@ const Products = () => {
             onChange={(e) => setSelectedCategory(e.target.value)}
           >
             <option value="">All Categories</option>
-            {categories.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.name}
+            {category && category?.map((category) => (
+              <option key={category?.id} value={category?.id}>
+                {category?.name}
               </option>
             ))}
           </select>
@@ -90,9 +88,9 @@ const Products = () => {
             onChange={(e) => setSelectedSubcategory(e.target.value)}
           >
             <option value="">All Subcategories</option>
-            {subcategories.map((subcategory) => (
-              <option key={subcategory.id} value={subcategory.id}>
-                {subcategory.name}
+            {subcategories && subcategories?.map((subcategory) => (
+              <option key={subcategory?._id} value={subcategory?._id}>
+                {subcategory?.name_sub}
               </option>
             ))}
           </select>
@@ -114,9 +112,9 @@ const Products = () => {
           </select>
         </div>
         {filteredProducts.length > 0 ? (
-          <div className='cardcontainer w-full min-h-3/4  flex flex-wrap p-2 items-center justify-center gap-5 md:my-5'>
+          <div className='cardcontainer md:w-[75vw] min-h-3/4  flex flex-wrap p-2 items-center justify-center gap-5 md:my-5'>
             {filteredProducts.map((product) => (
-              <div key={product._id} className='h-25 w-36 flex flex-col border border-[#053b50] rounded-md gap-2 items-center md:w-52 md:h-80 justify-between md:hover:scale-110 md:transform md:duration-300 shadow-gray-600 shadow-lg bg-[#0e4355b2] p-1 '>
+              <div key={product._id} className='h-72 w-36 flex flex-col border border-[#053b50] rounded-md gap-2 items-center md:w-52 md:h-80 justify-between md:hover:scale-110 md:transform md:duration-300 shadow-gray-600 shadow-lg bg-[#0e4355b2] p-1 '>
                 <img className='h-6 fixed top-0 right-1' onClick={()=>handleFavorite(product?._id)} src={favorite} alt="favorite " />
                 <h3 className='text-xs text-white font-bold pb-2'>{product.name}</h3>
                 <img className='w-full h-20 bg-white border md:w-full md:h-40 md:object-contain' src={product.photo} alt="" />
@@ -127,7 +125,7 @@ const Products = () => {
             ))}
           </div>
         ) : (
-          <div className='text-center text-gray-500 mt-5'>No hay coincidencias.</div>
+          <div className='text-center w-[75vw] text-gray-500 mt-5'> <p>No hay coincidencias.</p></div>
         )}
       </div>
     </div>
