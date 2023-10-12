@@ -1,7 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 import allProducts from "../actions/actionProducts.js";
 import allCategories from "../actions/actionCategories.js";
-import allSubcategories from "../actions/actionSubcategories.js";
 
 
 const initialState={
@@ -16,6 +15,7 @@ const itemsReducer = createReducer(initialState,(builder)=>{
     .addCase(
         allProducts.fulfilled, (state, action)=>{
             state.allItems = action.payload.product
+            state.pending = false
         }
     )
     .addCase(
@@ -24,13 +24,18 @@ const itemsReducer = createReducer(initialState,(builder)=>{
         }
     )
     .addCase(
-        allCategories.fulfilled, (state, action)=>{
-            state.categories = action.payload.product
+        allCategories.fulfilled,(state,action)=>{
+            const {sub , category} = action.payload
+            const newArray = category.map(cat => {
+            const subcategory = sub.filter(subcat => subcat.main_category._id === cat._id)
+            return {category:cat.name,id:cat._id,sub:subcategory}})
+            state.categories = newArray
+            state.pending = false
         }
     )
     .addCase(
-        allSubcategories.fulfilled, (state, action)=>{
-            state.subcategories = action.payload.subCategory
+        allCategories.pending,(state)=>{
+            state.pending = true
         }
     )
     

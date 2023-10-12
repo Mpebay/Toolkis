@@ -4,7 +4,7 @@ import cross from "../../../public/cross-small-svgrepo-com.svg"
 import arrow from "../../../public/arrow-prev-small-svgrepo-com.svg"
 
 
-const Display = ({subMenu,setSubMenu,show,setShow,categories,handleList}) => {
+const Display = ({subMenu,setSubMenu,show,setShow,categoriesAndSub,handleList}) => {
   return (
     
     <div className="fixed w-full lg:hidden z-40 top-0 flex ">
@@ -26,17 +26,16 @@ const Display = ({subMenu,setSubMenu,show,setShow,categories,handleList}) => {
       </div>
       <ul className="text-white font-bold text-2xl flex flex-col gap-4 py-10">
           <AnimatePresence>
-            {categories?.map(cat=>
-            {
-              return <div key={cat.id}>
-                        <p className="cursor-pointer" onClick={()=> handleList(cat.id)}>{cat.name}</p>
+            {categoriesAndSub?.map(cat=>
+            { return <div key={cat?.id}>
+                        <p className="cursor-pointer" onClick={()=> handleList(cat?.id)}>{cat?.name}</p>
                           <motion.div
                           initial={{y:null}}
                           animate={{y:10}}
                           exit={{y:null}}
                           className="font-normal text-lg flex flex-col gap-2 ">
-                            {cat.state && cat.subProducts && cat.subProducts?.map(sub=>{
-                              return <p className="cursor-pointer" key={sub}>{sub}</p>
+                            {cat?.show && cat.sub && cat.sub?.map(sub=>{
+                              return <p className="cursor-pointer"  key={sub.id}>{sub.name_sub}</p>
                             })
                             }
                           </motion.div>
