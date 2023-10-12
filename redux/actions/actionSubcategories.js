@@ -2,9 +2,9 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 
-const allProducts = createAsyncThunk('allProducts', async ()=>{
+const allSubcategories = createAsyncThunk('allSubcategories', async ()=>{
     try {
-        const res = await axios.get("http://localhost:8080/products")
+        const res = await axios.get("http://localhost:8080/subcategory")
         return res.data
         
 
@@ -13,4 +13,4 @@ const allProducts = createAsyncThunk('allProducts', async ()=>{
     }
 }) 
 
-export default allProducts
+export default allSubcategories

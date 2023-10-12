@@ -6,6 +6,7 @@ import allCategories from "../actions/actionCategories.js";
 const initialState={
     allItems:[],
     categories:[],
+    subcategories:[],
     pending: false
 }
 
@@ -29,7 +30,6 @@ const itemsReducer = createReducer(initialState,(builder)=>{
             const subcategory = sub.filter(subcat => subcat.main_category._id === cat._id)
             return {category:cat.name,id:cat._id,sub:subcategory}})
             state.categories = newArray
-
             state.pending = false
         }
     )
