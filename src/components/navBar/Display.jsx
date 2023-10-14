@@ -2,6 +2,7 @@ import React from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import cross from "../../../public/cross-small-svgrepo-com.svg"
 import arrow from "../../../public/arrow-prev-small-svgrepo-com.svg"
+import { Link } from 'react-router-dom'
 
 
 const Display = ({subMenu,setSubMenu,show,setShow,categoriesAndSub,handleList}) => {
@@ -18,6 +19,8 @@ const Display = ({subMenu,setSubMenu,show,setShow,categoriesAndSub,handleList}) 
       <div className=" flex justify-end ">
         <motion.img  whileHover={{rotate:360}} className="h-8" onClick={() => setShow(!show)} src={cross} alt="close menu" />
       </div>
+      <Link to={"/"}>Home</Link>
+      <Link to={"/products"}>All products </Link>
     <p onClick={()=> setSubMenu(!subMenu)} className="text-white font-bold text-3xl cursor-pointer ">Product Categories</p>
       {subMenu && <motion.div transition={{ type: "spring", stiffness: 500, damping: 50 }}  initial={{x:"-100%"}} animate={{x:0}} className=" border-r-2 border-[#eea221] overflow-y-auto h-screen py-3 fixed w-full z-50 top-0 bg-[#053b50] ">
       <div className=" flex justify-between ">
@@ -38,13 +41,19 @@ const Display = ({subMenu,setSubMenu,show,setShow,categoriesAndSub,handleList}) 
                               return <p className="cursor-pointer"  key={sub.id}>{sub.name_sub}</p>
                             })
                             }
-                          </motion.div>
-                  </div>
+                          </motion.div>   
+                      </div>
             })
             }
           </AnimatePresence>
+          
       </ul>
+      
        </motion.div>}
+          <Link to={"/diy"}>DIY</Link>
+          <Link to={"#"}>Hot Sales</Link>
+          <Link to={"/contact"}>Contact Us</Link>
+          <Link to={"/workwithus"}>Work with us</Link>
     </motion.div>
     <div 
       onClick={() => setShow(!show)}
