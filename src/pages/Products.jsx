@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import allProducts from '../../redux/actions/actionProducts';
 import { Link } from 'react-router-dom';
 import favorite from "../../public/heart-svgrepo-com.svg";
-import allCategories from '../../redux/actions/actionCategories';
 import { addFavorite, removeFavorite } from '../../redux/actions/actionFavorite';
+import actionCart from '../../redux/actions/actionCart';
+
 
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState('');

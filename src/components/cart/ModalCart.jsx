@@ -14,8 +14,9 @@ const ModalCart = ({ setCartShow, cartShow }) => {
     let total = 0;
     console.log(cart);
     if (cart.length > 0) {
-      total = cart.reduce((acc, item) => acc + item?.total || item?.product.price, 0);
+      total = cart.reduce((acc, item) => acc + item?.total , 0);
     }
+    console.log(total);
     setTotalPrice(total);
   }, [cart]);
 

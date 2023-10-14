@@ -11,7 +11,8 @@ const cartReducer = createReducer(initialState,(builder)=>{
     .addCase(actionCart,(state,action)=>{
         const item = {
             product : action.payload,
-        quantity: 1}
+        quantity: 1 ,
+    total: action.payload.price}
         state.cart = [...state.cart,item]
     })
     .addCase(eliminateOne,(state,action)=>{
