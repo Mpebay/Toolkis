@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const Contact = () => {
   return (
 <>  
-    <div className=' flex flex-col md:flex md:flex-wrap md:min-h-screen'>
+    <div className=' flex flex-col bg-[#f0ebe3] md:flex md:flex-wrap md:min-h-screen'>
         <div className='flex h-1/6 justify-center items-center md:justify-center '>
             <h1 className='text-xl mt-2 md:text-5xl'>Contact</h1>
         </div>
