@@ -11,6 +11,7 @@ const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedSubcategory, setSelectedSubcategory] = useState('');
   const [sortOrder, setSortOrder] = useState('asc');
+  const { cart } = useSelector((store) => store.cartReducer);
   const { allItems, category, subcategories } = useSelector((store) => store.itemsReducer);
   const favorites = useSelector((store) => store.userReducer.favorites);
   const dispatch = useDispatch();
@@ -25,14 +26,6 @@ const Products = () => {
       dispatch(addFavorite(item));
     }
   };
-
-  useEffect(() => {
-    if (allItems.length === 0) {
-      dispatch(allProducts());
-      dispatch(allCategories());
-    }
-  }, []);
-
   const filteredProducts = allItems
     .filter((product) => {
       const matchesSearchTerm = product.name.toLowerCase().includes(searchTerm.toLowerCase());
@@ -48,6 +41,11 @@ const Products = () => {
         return b.name.localeCompare(a.name);
       }
     });
+    // console.log(filteredProducts,"tuhermana");
+  const handleCart = (id)=>{
+    const favorite = allItems.find(item => item._id === id)
+    dispatch(actionCart(favorite))
+  }
 
   return (
     <div className='w-full min-h-screen bg-[#f0ebe3] flex flex-col md:flex-row p-3'>
@@ -123,7 +121,14 @@ const Products = () => {
                 <img className='w-full h-20 bg-white border md:w-full md:h-40 md:object-contain' src={product.photo} alt="" />
                 <p className='text-white text-xs line-clamp-3'>{product.description}</p>
                 <p className='text-white w-3/4 text-end font-semibold'>${product.price}</p>
-                <Link to={`/${product._id}/details`} className='w-full h-5 text-xs text-white rounded-lg text-center bg-[#053b50]'>See more</Link>
+                <div className='w-full flex gap-1'>
+                  <Link to={`/${product._id}/details`} className='w-full h-5 text-xs text-white rounded-lg text-center bg-[#053b50]'>See more</Link>
+                  <p onClick={()=>{
+                    if (!cart.find(item=> item.product._id === product._id)) {
+                       handleCart(product?._id)
+                    }
+                   }} className={`px-5 cursor-pointer h-5 text-xs text-white rounded-lg text-center ${(!cart.find(item=> item.product?._id === product._id))?"bg-[#053b50]": "bg-[#43626e56]" }`} >Add</p>
+                </div>
               </div>
             ))}
           </div>
