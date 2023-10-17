@@ -11,6 +11,8 @@ import WorkWithUs from "../src/pages/workWithUs";
 import Contact from "../src/pages/Contact";
 import Favorite from "../src/pages/Favorite";
 import AdminPanel from "../src/pages/AdminPanel";
+import CategoryPage from "../src/pages/CategoryPage";
+import MainCategoryPage from "../src/pages/MainCategoryPage";
 
 const router = createBrowserRouter([
     {path: "/",
@@ -38,6 +40,10 @@ const router = createBrowserRouter([
     element:<Favorite/>},
         {path: "/adminpanel",
     element:<AdminPanel/>},
+        {path: "/category/:main/:param",
+    element:<CategoryPage/>},
+        {path: "/category/:main",
+    element:<MainCategoryPage/>},
     ]  
 }
 ])
