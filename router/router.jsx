@@ -11,6 +11,8 @@ import WorkWithUs from "../src/pages/workWithUs";
 import Contact from "../src/pages/Contact";
 import Favorite from "../src/pages/Favorite";
 import AdminPanel from "../src/pages/AdminPanel";
+import PostPayment from "../src/pages/PostPayment";
+
 
 const router = createBrowserRouter([
     {path: "/",
@@ -38,6 +40,8 @@ const router = createBrowserRouter([
     element:<Favorite/>},
         {path: "/adminpanel",
     element:<AdminPanel/>},
+    {path: "/post-payment",
+    element:<PostPayment/>},
     ]  
 }
 ])

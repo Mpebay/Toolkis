@@ -41,7 +41,6 @@ const Products = () => {
         return b.name.localeCompare(a.name);
       }
     });
-    // console.log(filteredProducts,"tuhermana");
   const handleCart = (id)=>{
     const favorite = allItems.find(item => item._id === id)
     dispatch(actionCart(favorite))

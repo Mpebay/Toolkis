@@ -6,8 +6,10 @@ const initialState = {
         userName:null,
         role:0,
         onLine:false,
+        
     },
     favorites:[],
+    
 }
 
 const userReducer = createReducer(initialState,(builder)=>{
