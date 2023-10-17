@@ -9,7 +9,7 @@ import Display from "../../components/navBar/Display";
 import DisplayWeb from "../../components/navBar/DisplayWeb";
 import arrowR from "../../../public/arrow-down-svgrepo-com.svg"
 import favorite from "../../../public/heart-svgrepo-com.svg"
-import cart from "../../../public/cart-large-svgrepo-com.svg"
+import cartIcon from "../../../public/cart-large-svgrepo-com.svg"
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import allCategories from "../../../redux/actions/actionCategories";
@@ -24,9 +24,21 @@ const NavBar = () => {
     const [isFooter , setIsFooter] = useState(true)
     const [subMenu , setSubMenu] = useState(false)
     const [cartShow , setCartShow] = useState(false)
-
+    const [quantityCart , setQuantityCart] = useState(0)
     const {categories, allItems} = useSelector((store) => store.itemsReducer )
+    const {cart} = useSelector(store => store.cartReducer)
     const dispatch = useDispatch()
+
+    useEffect(() => {
+      if (cart.length > 0) {
+        const quantity = cart.length
+      setQuantityCart(quantity)
+      }else{
+        setQuantityCart(0)
+      }
+      
+    }, [cart])
+    
 
     useEffect(() => {
       if (allItems.length === 0) {
@@ -115,18 +127,17 @@ const NavBar = () => {
             />
             <AnimatePresence>
             {search ? (
-              <SearchInput/>
+              <SearchInput isVisible={isVisible}/>
               ) : null}
               </AnimatePresence>
               <div className="flex gap-4">
                 <Link to={"/favorite"}><motion.img  src={favorite} whileHover={{scale:1.3}} className="h-10 cursor-pointer " alt="Favorites" /></Link>
                 <Link to={"/login"}><motion.img whileHover={{scale:1.3}} className="h-10 cursor-pointer " src={userIcon} alt="user icon" /></Link>
-
               </div>
         </div>
         <AnimatePresence>
         {search ? (
-          <MobileSearchInput/>
+          <MobileSearchInput isVisible={isVisible}/>
           ) : null}
           </AnimatePresence>
           <div className="bg-[#053b50] hidden lg:flex text-white font-medium tracking-widest justify-start gap-5 px-5 relative z-20">
@@ -140,9 +151,12 @@ const NavBar = () => {
           </div>
       <AnimatePresence>
       {cartShow && <ModalCart key={"modalCart"} setCartShow={setCartShow} cartShow={cartShow}/>}
-      {show && <DisplayWeb categoriesAndSub={categoriesAndSub} key={"DisplayWeb"}/>}
+      {show && <DisplayWeb categoriesAndSub={categoriesAndSub} setShow={setShow} show={show} key={"DisplayWeb"}/>}
       {show && <Display key={"Display"} categoriesAndSub={categoriesAndSub} show={show}  subMenu={subMenu} setSubMenu={setSubMenu}setShow={setShow} handleList={handleList} /> } 
-      {isFooter && <motion.img onClick={()=>setCartShow(!cartShow)} className="fixed bottom-[15px] right-[10px] h-14 cursor-pointer " whileHover={{scale:1.3}} initial={{x:"50%"}} animate={{x:0}} exit={{x:"200%"}} src={cart} alt="cart" />}
+      {isFooter && <motion.div onClick={()=>setCartShow(!cartShow)} className="fixed bottom-[15px] right-[10px] h-14 cursor-pointer " whileHover={{scale:1.3}} initial={{x:"50%"}} animate={{x:0}} exit={{x:"200%"}}>
+          <p className="rounded-full flex items-center justify-center absolute z-20 left-[35px] bg-red-600 text-white font-bold w-5 h-5">{quantityCart}</p>
+        <img className=" h-14 relative" src={cartIcon} alt="cart"/>
+      </motion.div> }
       </AnimatePresence>
       </motion.div>
       <div className="h-[23vh] bg-[#f0ebe3] w-full">

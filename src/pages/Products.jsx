@@ -107,7 +107,7 @@ const Products = () => {
           </select>
         </div>
         {filteredProducts.length > 0 ? (
-          <div className='cardcontainer md:w-[75vw] min-h-3/4 flex flex-wrap p-2 items-center justify-center gap-5 md:my-5'>
+          <div className='cardcontainer md:w-max-[75vw] min-h-3/4 flex flex-wrap p-2 items-center justify-center gap-5 md:my-5'>
             {filteredProducts.map((product) => (
               <div key={product._id} className='h-72 w-36 flex flex-col border border-[#053b50] rounded-md gap-2 items-center md:w-52 md:h-80 justify-between md:hover:scale-110 md:transform md:duration-300 shadow-gray-600 shadow-lg bg-[#0e4355b2] p-1 '>
                 <img
