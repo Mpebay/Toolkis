@@ -12,6 +12,7 @@ import Contact from "../src/pages/Contact";
 import Favorite from "../src/pages/Favorite";
 import AdminPanel from "../src/pages/AdminPanel";
 import EditItem from "../src/components/forms/EditItem";
+import PostPayment from "../src/pages/PostPayment";
 
 const router = createBrowserRouter([
     {path: "/",
@@ -41,8 +42,8 @@ const router = createBrowserRouter([
     element:<Favorite/>},
         {path: "/adminpanel",
     element:<AdminPanel/>},
-    //     {path: "/edit",
-    // element:<EditItem/>},
+      {path: "/post-payment",
+    element:<PostPayment/>},
     ]  
 }
 ])

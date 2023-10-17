@@ -3,8 +3,7 @@ import newUser from "../actions/actionNewUser";
 import editUser from "../actions/actionEditUser";
 import login from "../actions/actionLogin";
 import newAdmPanUser from "../actions/actionNewAdmPanUser";
-
-
+import { addFavorite, removeFavorite } from "../actions/actionFavorite"
 
 const initialState = {
     user: {
@@ -58,5 +57,12 @@ const userReducer = createReducer(initialState, (builder) => {
             };
         })
 });
+    .addCase(addFavorite, (state,action)=>{
+        state.favorites = [...state.favorites, action.payload]
+    })
+    .addCase(removeFavorite, (state, action) => {
+        state.favorites = state.favorites.filter(item => item._id !== action.payload._id);
+    });
+})
 
 export default userReducer;
