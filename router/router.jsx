@@ -13,6 +13,8 @@ import Favorite from "../src/pages/Favorite";
 import AdminPanel from "../src/pages/AdminPanel";
 import CategoryPage from "../src/pages/CategoryPage";
 import MainCategoryPage from "../src/pages/MainCategoryPage";
+import EditItem from "../src/components/forms/EditItem";
+import PostPayment from "../src/pages/PostPayment";
 
 const router = createBrowserRouter([
     {path: "/",
@@ -28,6 +30,8 @@ const router = createBrowserRouter([
     element:<Register/>},
         {path: "/:id/details",
     element:<Details/>},
+        {path: "/:id/edit",
+    element: <EditItem/>},
         {path: "/cart",
     element:<Cart/>},
         {path:"/diy",
@@ -44,6 +48,8 @@ const router = createBrowserRouter([
     element:<CategoryPage/>},
         {path: "/category/:main",
     element:<MainCategoryPage/>},
+      {path: "/post-payment",
+    element:<PostPayment/>},
     ]  
 }
 ])

@@ -1,76 +1,96 @@
+import React, { useState } from 'react';
 import axios from 'axios';
-import React from 'react'
-import { useState } from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-
-
+import { uploadFile } from '../../firebase/firebase.js';
 
 const DIY = () => {
     const [keyword, setKeyword] = useState('');
-    const [videos, setVideos] = useState([])
-    let [counter, setCounter] = useState(0);
+    const [videoUrl, setVideoUrl] = useState('');
 
-    const settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 3, // Define cuántos videos se muestran a la vez
-      slidesToScroll: 1,
-    };
+    const apiYoutubeKey = 'AIzaSyAja3E2CFp748eeLvUITPy38ghevxMmXhc'
+    const [selectedFile, setSelectedFile] = useState(null);
 
-    let next = () => {
-      if (counter + 1 < categories.length) {
-        setCounter(counter + 1);
-      } else {
-        setCounter(0);
-      }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const result = await uploadFile(selectedFile);
+            console.log(result);
+            alert("Upload successfully");
+        } catch (error) {
+            alert(error);
+        }
     };
   
-    const prev = () => {
-      if (counter - 1 >= 0) {
-        setCounter(counter - 1);
-      } else {
-        setCounter(categories.length - 1);
-      }
-    }; 
-    const apiYoutubeKey = 'AIzaSyAja3E2CFp748eeLvUITPy38ghevxMmXhc'
+    const handleFileChange = (e) => {
+        setSelectedFile(e.target.files[0]);
+    };
+  
+    const openFileInput = () => {
+        document.getElementById("fileInput").click();
+    };
 
     const handleSearch = async () => {
-        try {
+      try {
           const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
-            params: {
-              q: keyword,
-              type: 'video',
-              part: 'snippet',
-              key: apiYoutubeKey,
-            },
+              params: {
+                  q: keyword,
+                  type: 'video',
+                  part: 'snippet',
+                  key: apiYoutubeKey,
+              },
           });
-    
-          setVideos(response.data.items);
-        } catch (error) {
-          console.error('Error al buscar videos en YouTube', error);
-        }
-      };
 
+          if (response.data.items.length > 0) {
+              const videoId = response.data.items[0].id.videoId;
+              setVideoUrl(`https://www.youtube.com/embed/${videoId}`);
+          } else {
+              setVideoUrl(''); // No se encontraron videos, se borra la URL del video
+          }
+      } catch (error) {
+          console.error('Error al buscar videos en YouTube', error);
+      }
+  };
   return (
     <>
-        <div className=' flex h-[80vh] w-full flex-col md:flex-row  mt-3 gap-3 p-3 items-center'>
-          
-            <div className='border border-black w-full h-72 md:w-1/5 md:min-h-48 bg-[#176B87] rounded-lg flex flex-col items-center '>
-                <h1 className='text-white text-3xl'>Tutorials</h1>
 
-                <h3 className='text-white'>Introduction</h3>
-                <h3 className='text-white'>Send us your video</h3>
-            </div>
-            <div className='border border-black w-full h-96 md:w-4/5 md:min-h-48 bg-[#176B87] rounded-lg flex justify-center'>
-           <div>
-            <img  onClick={prev} src="../../public/ArrowL.png" className='mt-48 cursor-pointer' alt="" />
-            </div>
+    
+    <div className='w-full h-full'>
+          <div className="w-full h-12 mt-20 flex justify-center text-center">
+              <h1 className="text-5xl font-semibold text-[#053b50]">DO IT YOURSELF</h1>
+          </div>
+          <div className="flex flex-col justify-center items-center">
+              <h1 className="text-xl text-[#053b50] font-semibold mt-16 md:mt-8">Welcome to Do It Yourself!</h1>
+              <h1 className="text-xl text-[#053b50] font-semibold mt-4 md:mt-8">A space when you can watch and upload your own way to do something. All related with hardware.</h1>
+          </div>
+        <div className=' flex min-h-full w-full flex-col gap-3 p-3 items-center'>
+          <div className='flex flex-col md:flex-row justify-around'>
+            <div className='border border-black w-full min-h-72 md:w-1/5 md:h-96 bg-[#176B87] rounded-lg flex flex-col items-center '>
 
+                <h3 className='text-white text-2xl'>How to upload a video</h3>
+
+                <h3 className='text-white text-center'>Below or next to this message, you will find a box labeled "upload your video". You should click on it, and it will expand the box for uploading files. Afterward, you should press "upload video," and you will receive a success or error message regarding the upload. Remember to upload practical videos that are no longer than 5 minutes, demonstrating clearly how to use various tools.</h3>
+            </div>
+        
+            <div className='flex flex-col w-full mt-4 md:w-48 h-96 bg-[#176B87] items-center text-base justify-center rounded-md'>
+            <div>
+              <h1 className='text-white'>Upload your video</h1>
+            </div>
             
-                <div className=' items-center flex flex-col'>
+          <div className='mt-5'>
+                <button className=" h-7 text-[#053b50] bg-white font-bold rounded-md w-24" onClick={openFileInput}>Select a File</button>
+                <input
+                type="file"
+                id="fileInput"
+                accept=".pdf"
+                style={{ display: "none" }}
+                onChange={handleFileChange}
+                />
+          </div>
+          <button className="text-white mt-3" type="submit" onClick={handleSubmit}>Upload file selected here</button>
+          </div>
+          </div>
+
+            <div className='w-[100vh] rounded-md h-96 bg-[#176B87]'>
+            <div className=' items-center flex flex-col'>
                 <label htmlFor="" id='youtube'></label>
                 <input type="text" placeholder="Send a keyword" value={keyword}
                 onChange={(e) => setKeyword(e.target.value)} className='mt-5' />
@@ -78,31 +98,30 @@ const DIY = () => {
                 </div>
                 
 
-                <div className='h-52 w-full flex flex-wrap item-center '>
-        {videos.map((video) => (
-          <div key={video.id.videoId} className='m-10'>
-            <iframe
-              title={video.snippet.title}
-              width="560"
-              height="315"
-              src={`https://www.youtube.com/embed/${video.id.videoId}`}
-              allowFullScreen
-            ></iframe>
-          </div>
-        ))}
-        </div>
+                <div className='h-52 w-full flex justify-center item-center'>
+                {videoUrl && (
+                    <div className='m-10'>
+                        <iframe
+                            title="Video"
+                            className='w-full h-48'
+                            src={videoUrl}
+                            allowFullScreen
+                        ></iframe>
+                    </div>
+                )}
+            </div> 
       
-     
-
-                <div>
-                <img onClick={next} src="../../public/ArrowR.png" className='mt-48 cursor-pointer' alt="" />
-                </div>
-                
-            
-            </div>
+        </div>
+          
+        </div>
+        
         </div>
     </>
   )
 }
 
 export default DIY
+
+
+
+ 

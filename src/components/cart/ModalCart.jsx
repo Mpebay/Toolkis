@@ -88,9 +88,9 @@ const ModalCart = ({ setCartShow, cartShow }) => {
               Clear
             </button>
           </div>
-          <button className="bg-[#7D9D9C] rounded-md p-2 hover:bg-emerald-600 text-white hover:scale-110 hover:font-bold transform duration-300">
-            Complete Purchase
-          </button>
+          <Link to={"/cart"} onClick={setCartShow(cartShow)} className="bg-[#7D9D9C] rounded-md p-2 hover:bg-emerald-600 text-white hover:scale-110 hover:font-bold transform duration-300">
+            Complete purchase
+          </Link>
         </div>
       </motion.div>
     </div>

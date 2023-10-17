@@ -41,7 +41,7 @@ const Products = () => {
         return b.name.localeCompare(a.name);
       }
     });
-    // console.log(filteredProducts,"tuhermana");
+
   const handleCart = (id)=>{
     const favorite = allItems.find(item => item._id === id)
     dispatch(actionCart(favorite))
@@ -133,7 +133,7 @@ const Products = () => {
             ))}
           </div>
         ) : (
-          <div className='text-center w-[75vw] text-gray-500 mt-5'> <p>No hay coincidencias.</p></div>
+          <div className='text-center w-[75vw] text-gray-500 mt-5'> <p>There are no matches.</p></div>
         )}
       </div>
     </div>
