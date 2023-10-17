@@ -1,6 +1,9 @@
 import { createReducer } from "@reduxjs/toolkit";
 import allProducts from "../actions/actionProducts.js";
 import allCategories from "../actions/actionCategories.js";
+import newProduct from "../actions/actionNewProduct.js";
+import editProduct from "../actions/actionEditProduct.js";
+
 
 
 const initialState={
@@ -41,7 +44,18 @@ const itemsReducer = createReducer(initialState,(builder)=>{
             state.pending = true
         }
     )
-    
+    .addCase(
+        newProduct.fulfilled, (state, action) => {
+            state.allItems = action.payload;
+            state.pending = false;
+        }
+    )
+    .addCase(
+        editProduct.fulfilled, (state, action) => {
+            state.allItems = action.payload;
+            state.pending = false;
+        }
+    )
 })
 
 export default itemsReducer

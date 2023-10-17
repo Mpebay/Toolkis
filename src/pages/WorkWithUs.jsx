@@ -2,7 +2,7 @@ import React from 'react'
 
 const WorkWithUs = () => {
   return (
-    <div className='w-full h-screen '>
+    <div className='w-full h-screen bg-[#f0ebe3]'>
         <div className='w-full h-12 mt-20 flex justify-center '>
       <h1 className='text-5xl font-semibold text-[#053b50]'>WORK WITH US</h1>
       </div>

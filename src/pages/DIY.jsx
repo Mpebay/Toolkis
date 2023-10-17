@@ -56,7 +56,7 @@ const DIY = () => {
 
   return (
     <>
-        <div className=' flex h-[80vh] w-full flex-col md:flex-row  mt-3 gap-3 p-3 items-center'>
+        <div className=' flex h-[80vh] w-full flex-col bg-[#f0ebe3] md:flex-row  mt-3 gap-3 p-3 items-center'>
           
             <div className='border border-black w-full h-72 md:w-1/5 md:min-h-48 bg-[#176B87] rounded-lg flex flex-col items-center '>
                 <h1 className='text-white text-3xl'>Tutorials</h1>
