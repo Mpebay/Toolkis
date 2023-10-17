@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+
 
 const Details = () => {
    const products = useSelector(store => store.itemsReducer.allItems)
@@ -17,6 +18,7 @@ const Details = () => {
                 <h1 className='text-white text-xl font-bold md:text-5xl'>{product?.name}</h1>
                 <h3 className='text-white text-xs md:text-2xl text-justify'>{product?.description}</h3>
                 <h3 className='text-white font-semibold md:text-5xl'>${product?.price}</h3>
+                <Link to={`/${id}/edit`} className='w-48 bg-[#f0ebe3] border-2 border-[#053b50] h-12 flex justify-center items-center rounded-lg'>Edit product</Link>
             </div>
         </div>
         <div className='w-full flex flex-col mb-2 opacity-80 md:w-1/2 md:self-center'>

@@ -5,7 +5,7 @@ const Favorite = () => {
   return (
     <>
         
-        <div className='w-full h-screen md:min-w-full md:min-h-screen flex flex-col justify-start items-center'>
+        <div className='w-full bg-[#f0ebe3] h-screen md:min-w-full md:min-h-screen flex flex-col justify-start items-center'>
             <div className=' flex w-11/12 mt-2 md:mt-8 md:justify-start md:ps-4 font-bold text-xl items-center justify-center'>
                 <h1>Favorites</h1>
             </div>

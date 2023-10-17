@@ -26,13 +26,10 @@ const Products = () => {
   
   const filteredProducts = allItems
     .filter((product) => {
-      // Filter by search term
       const matchesSearchTerm = product.name.toLowerCase().includes(searchTerm.toLowerCase());
 
-      // Filter by selected category
       const matchesCategory = selectedCategory === '' || product.category.toLowerCase() === selectedCategory.toLowerCase();
 
-      // Filter by selected subcategory
       const matchesSubcategory = selectedSubcategory === '' || product.subcategory.toLowerCase() === selectedSubcategory.toLowerCase();
 
       return matchesSearchTerm && matchesCategory && matchesSubcategory;
@@ -45,7 +42,6 @@ const Products = () => {
       }
     });
     
-    // console.log(filteredProducts,"tuhermana");
   const handleFavorite = (id)=>{
     const favorite = allItems.find(item => item._id === id)
     console.log(favorite);
@@ -125,7 +121,7 @@ const Products = () => {
             ))}
           </div>
         ) : (
-          <div className='text-center w-[75vw] text-gray-500 mt-5'> <p>No hay coincidencias.</p></div>
+          <div className='text-center w-[75vw] text-gray-500 mt-5'> <p>There are no matches.</p></div>
         )}
       </div>
     </div>
