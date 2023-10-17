@@ -56,13 +56,12 @@ const userReducer = createReducer(initialState, (builder) => {
                 }
             };
         })
+        .addCase(addFavorite, (state,action)=>{
+            state.favorites = [...state.favorites, action.payload]
+        })
+        .addCase(removeFavorite, (state, action) => {
+            state.favorites = state.favorites.filter(item => item._id !== action.payload._id);
+        });
 });
-    .addCase(addFavorite, (state,action)=>{
-        state.favorites = [...state.favorites, action.payload]
-    })
-    .addCase(removeFavorite, (state, action) => {
-        state.favorites = state.favorites.filter(item => item._id !== action.payload._id);
-    });
-})
 
 export default userReducer;
