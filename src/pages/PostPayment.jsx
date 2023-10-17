@@ -1,8 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import NavBar from '../components/navBar/NavBar'
+import Swal from 'sweetalert2';
 
 
-const Index = () => {
+
+const PostPayment = () => {
+
+    const showPurchaseConfirmation = () => {
+        Swal.fire({
+            icon: 'success',
+            title: 'Thank you for your purchase!',
+            showConfirmButton: false,
+            timer: 3000, 
+        });
+    };
 
     const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
@@ -30,6 +40,10 @@ const Index = () => {
           clearInterval(interval);
         };
       }, [currentImageIndex]);
+
+      useEffect(()=>{
+        showPurchaseConfirmation()
+      }, [])
 
     return (
         <>
@@ -89,6 +103,11 @@ const Index = () => {
                                 <img className='w-full h-2/3 border md:w-full md:h-2/3 border-gray-300' src="../public/drill.jpg" alt="" />
                                 <button className='w-full h-5 text-xs text-white rounded-lg text-center bg-slate-600'>See more</button>
                             </div>
+                            {/* <div className='h-25 w-36 flex flex-col border border-gray-400 rounded-md gap-2 items-center md:w-52 md:h-64 justify-between hover:scale-110 transform duration-300 shadow-white shadow-sm bg-[#F0EBE3] p-1 '>
+                                <h3 className='text-xs text-gray-600 font-bold pb-2'>Manu's favorite!</h3>
+                                <img className='w-full h-2/3 border md:w-full md:h-2/3 border-gray-300' src="../public/specialdrill.jpg" alt="" />
+                                <button className='w-full h-5 text-xs text-white rounded-lg text-center bg-slate-600'>See more</button>
+                            </div> */}
                             <div className='h-25 w-36 flex flex-col border border-gray-400 rounded-md gap-2 items-center md:w-52 md:h-64 justify-between hover:scale-110 transform duration-300 shadow-white shadow-sm bg-[#F0EBE3] p-1 '>
                                 <h3 className='text-xs text-gray-600 font-bold pb-2'>Item 4</h3>
                                 <img className='w-full h-2/3 border md:w-full md:h-2/3 border-gray-300' src="../public/nail.jpg" alt="" />
@@ -123,5 +142,5 @@ const Index = () => {
     )
 }
 
-export default Index
+export default PostPayment
 

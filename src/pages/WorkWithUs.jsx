@@ -25,6 +25,7 @@ const WorkWithUs = () => {
   };
 
   return (
+
       <div className="w-full min-h-screen flex flex-col">
           <div className="w-full h-12 mt-20 flex justify-center text-center">
               <h1 className="text-5xl font-semibold text-[#053b50]">WORK WITH US</h1>
@@ -36,6 +37,7 @@ const WorkWithUs = () => {
           <div className='flex flex-col mt-5 w-full h-48 bg-[#053b50] items-center text-base justify-center'>
             <div>
               <h1 className='text-white'>Upload your CV and find your dream job!</h1>
+
             </div>
 
           <div className='mt-5'>

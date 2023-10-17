@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import allCategories from "../../../redux/actions/actionCategories";
 import ModalCart from "../cart/modalCart";
+import allProducts from "../../../redux/actions/actionProducts";
 
 const NavBar = () => {
     const [search, setSearch] = useState(false);
@@ -24,8 +25,14 @@ const NavBar = () => {
     const [subMenu , setSubMenu] = useState(false)
     const [cartShow , setCartShow] = useState(false)
 
-    const {categories} = useSelector((store) => store.itemsReducer )
+    const {categories, allItems} = useSelector((store) => store.itemsReducer )
     const dispatch = useDispatch()
+
+    useEffect(() => {
+      if (allItems.length === 0) {
+        dispatch(allProducts());
+      }
+    }, []);
 
     useEffect(()=>{
       if (categoriesAndSub.length === 0) {
@@ -60,10 +67,10 @@ const NavBar = () => {
         const scrollHeight = document.documentElement.scrollHeight;
         const clientHeight = document.documentElement.clientHeight;
         const scrollFromBottom = scrollHeight - (scrollY + clientHeight);
-        const scrollThresholdFromBottom = 200;
+        const scrollThresholdFromBottom = 300;
   
         setIsFooter(scrollFromBottom > scrollThresholdFromBottom);
-        setIsVisible(scrollY <= 200); 
+        setIsVisible(scrollY <= 100); 
       };
   
       window.addEventListener("scroll", handleScroll);
@@ -113,7 +120,7 @@ const NavBar = () => {
               </AnimatePresence>
               <div className="flex gap-4">
                 <Link to={"/favorite"}><motion.img  src={favorite} whileHover={{scale:1.3}} className="h-10 cursor-pointer " alt="Favorites" /></Link>
-                <motion.img whileHover={{scale:1.3}} className="h-10 cursor-pointer " src={userIcon} alt="user icon" />
+                <Link to={"/login"}><motion.img whileHover={{scale:1.3}} className="h-10 cursor-pointer " src={userIcon} alt="user icon" /></Link>
 
               </div>
         </div>
@@ -125,11 +132,11 @@ const NavBar = () => {
           <div className="bg-[#053b50] hidden lg:flex text-white font-medium tracking-widest justify-start gap-5 px-5 relative z-20">
             <p onClick={()=> setShow(!show)} className=" hover:text-[#eea221] cursor-pointer flex">Categories <img className={`h-6 ${show? "rotate-180":""}`}  src={arrowR} alt="colapse" /></p>
             <Link to={"/"} className=" hover:text-[#eea221] cursor-pointer">Home</Link>
-            <Link to={"/products"} className=" hover:text-[#eea221] cursor-pointer">All products</Link>
-            <Link className=" hover:text-[#eea221] cursor-pointer">DIY</Link>
+            <Link to={"/products"} className=" hover:text-[#eea221] cursor-pointer">All Products</Link>
+            <Link to={"/diy"} className=" hover:text-[#eea221] cursor-pointer">DIY</Link>
             <Link className=" hover:text-[#eea221] cursor-pointer">Hot Sales</Link>
             <Link to={"/contact"} className=" hover:text-[#eea221] cursor-pointer">Contact Us</Link>
-            <Link to={"/workwithus"} className=" hover:text-[#eea221] cursor-pointer">Work with us</Link>
+            <Link to={"/workwithus"} className=" hover:text-[#eea221] cursor-pointer">Work With Us</Link>
           </div>
       <AnimatePresence>
       {cartShow && <ModalCart key={"modalCart"} setCartShow={setCartShow} cartShow={cartShow}/>}
