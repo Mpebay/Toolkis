@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { uploadFile } from '../../firebase/firebase';
+import { uploadFile } from '../../firebase/firebase.js';
 
 const DIY = () => {
     const [keyword, setKeyword] = useState('');

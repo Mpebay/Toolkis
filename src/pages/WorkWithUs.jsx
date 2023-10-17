@@ -1,5 +1,5 @@
 import React, {useState, useRef} from 'react'
-import { uploadFile } from '../../firebase/firebase';
+import { uploadFile } from '../../firebase/firebase.js';
 
 
 const WorkWithUs = () => {
