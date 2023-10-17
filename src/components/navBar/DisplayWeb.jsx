@@ -20,7 +20,6 @@ const DisplayWeb = ({categoriesAndSub}) => {
          }
         </ul>
       </div>})}
-     
     </motion.div>
   );
 };
