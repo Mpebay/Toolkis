@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import login from '../../redux/actions/actionLogin'
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 
 const Login = () => {
@@ -23,20 +24,26 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  
     dispatch(login(credentials))
       .then((resultAction) => {
         if (login.fulfilled.match(resultAction)) {
-          navigate("/")
+          Swal.fire({
+            title: 'Welcome!',
+            text: "You've logged in successfully",
+            icon: 'success',
+          }).then(() => {
+            navigate("/");
+          });
         } else if (login.rejected.match(resultAction)) {
-          alert("Invalid credentials")
+          alert("Credenciales inválidas");
           console.error('Error:', resultAction.error.message);
         }
       });
   };
 
   return (
-    <div className='w-full min-h-screen mt-10 bg-[#f0ebe3] flex flex-col justify-center gap-10 p-5 items-center'>
+    <div className='w-full min-h-screen bg-[#f0ebe3] flex flex-col justify-center gap-10 p-5 items-center'>
       <div className='w-full min-h-12 text-center text-[#f0ebe3] p-5 bg-[#053b50]'>
         <h1 className='font-bold'>Welcome back!</h1>
         <h3 className='font-semibold text-sm'>Sign in, and keep enjoying our shopping experience!</h3>

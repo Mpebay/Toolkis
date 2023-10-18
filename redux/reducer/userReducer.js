@@ -4,6 +4,7 @@ import editUser from "../actions/actionEditUser";
 import login from "../actions/actionLogin";
 import newAdmPanUser from "../actions/actionNewAdmPanUser";
 import { addFavorite, removeFavorite } from "../actions/actionFavorite"
+import { logout } from "../actions/actionLogout";
 
 const initialState = {
     user: {
@@ -61,7 +62,17 @@ const userReducer = createReducer(initialState, (builder) => {
         })
         .addCase(removeFavorite, (state, action) => {
             state.favorites = state.favorites.filter(item => item._id !== action.payload._id);
-        });
+        })
+        .addCase(logout, (state) => {
+            // Restablece el estado al cerrar la sesión
+            state.user = {
+              userName: null,
+              role: 0,
+              onLine: false,
+              email: null
+            };
+            state.favorites = [];
+          });
 });
 
 export default userReducer;

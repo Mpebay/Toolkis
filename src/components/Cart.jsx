@@ -89,14 +89,14 @@ const Cart = () => {
             <p>${totalPrice.toFixed(2)}</p>
           </div>
         </div>
-        <div className='w-4/6 text-sm flex gap-2 justify-between flex-col md:flex-row'>
+        <div className='w-5/6 text-sm flex gap-2 justify-between flex-col md:flex-row'>
           <div className='flex gap-2 flex-col md:flex-row md:gap-4'>
-            <Link to={"/products"} className='bg-[#7D9D9C] text-center rounded-md text-white p-2 hover:scale-110 transform duration-300'>Add more products</Link>
-            <button onClick={()=> dispatch(eliminateAll())} className='bg-red-500 text-white rounded-md p-2 hover:bg-red-700 hover:scale-110 transform duration-300'>Clear cart</button>
+            <Link to={"/products"} className='bg-[#7D9D9C] flex items-center text-center rounded-md text-white p-2 hover:scale-110 transform duration-300'>Add more products</Link>
+            <button onClick={()=> dispatch(eliminateAll())} className='h-12 bg-red-500 text-white rounded-md p-2 hover:bg-red-700 hover:scale-110 transform duration-300'>Clear cart</button>
           </div>
-          <button className='bg-[#7D9D9C] rounded-md p-2 hover:bg-emerald-600 text-white hover:scale-110 hover:font-bold transform duration-300' onClick={handleBuy}>Complete purchase</button>
-          {preferenceId && <Wallet initialization={{ preferenceId }} />}
+          <button className=' bg-[#7D9D9C] rounded-md p-2 hover:bg-emerald-600 text-white hover:scale-110 hover:font-bold transform duration-300' onClick={handleBuy}>Complete purchase</button>
         </div>
+        {preferenceId && <Wallet initialization={{ preferenceId }} />}
       </div>
       <div className='w-full h-32 bg-[#053b50]'></div>
     </div>

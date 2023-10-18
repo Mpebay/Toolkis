@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import newAdmPanUser from '../../../redux/actions/actionNewAdmPanUser'
+import Swal from 'sweetalert2'
 
 
 const UploadUser = () => {
@@ -33,9 +34,30 @@ const UploadUser = () => {
 
         try {
             console.log(newUserData)
-            await dispatch(newAdmPanUser(newUserData))
+            const response = await dispatch(newAdmPanUser(newUserData))
+            console.log(response)
+            if (response && response.payload.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'User created successfully!',
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Something went wrong!',
+                    text: response.error || 'Please, check the data and try again later.',
+                });
+            }
         } catch (error) {
             console.log(error)
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Something went wrong!',
+                text: 'Please, check the data and try again later.',
+            });
         }
     }
 
