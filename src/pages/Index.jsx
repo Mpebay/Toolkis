@@ -5,10 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import actionCart from "../../redux/actions/actionCart";
 import favorite from "../../public/heart-svgrepo-com.svg";
 import festbanner from "../../public/festool_orig.jpg"
-import {
-  addFavorite,
-  removeFavorite,
-} from "../../redux/actions/actionFavorite";
+import blackand from "../../public/blackadn.png"
+import offchrist from "../../public/7434542ff41f01079e2b39d15894683b.png"
+import { addFavorite,removeFavorite } from "../../redux/actions/actionFavorite";
 import { AnimatePresence, motion } from "framer-motion";
 import { useMediaQuery } from "@react-hook/media-query";
 
@@ -18,6 +17,7 @@ const Index = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [currentArrayIndex, setCurrentArrayIndex] = useState(0);
     const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
+    const [sale, setSale] = useState({});
     const isMd = useMediaQuery("(max-width: 765px)")
     const isLg = useMediaQuery("(max-width: 1024px)")
 
@@ -27,6 +27,7 @@ const Index = () => {
 
   const banner =[
     festbanner,
+    blackand,
   ]  
   const images = [
     "../1000_F_221721790_zTZJlTtFV9CR3hTc6Csd3mhwvkKi0k7q.jpg",
@@ -34,7 +35,13 @@ const Index = () => {
     "../boschlogo.png",
     "../bahco-logo.png",
   ];
+  useEffect(() => {
+    
+    const product = allItems.find(item => item.name === "Cordless Drill")
+    setSale(product)
 
+  }, [allItems])
+  
   const handleCart = (id) => {
       const favorite = allItems.find((item) => item._id === id);
     dispatch(actionCart(favorite));
@@ -124,7 +131,7 @@ useEffect(() => {
   return (
     <>
       <div className="w-full min-h-screen">
-        <div className="w-full min-h-screen bg-[#f0ebe3] flex flex-col items-center gap-10 ">
+        <div className="w-full min-h-screen bg-[#f0ebe3] flex flex-col items-center gap-28 ">
           <div className="w-full border-y-2 border-[#0e4355] justify-center flex bg-[#0e4355d8]">
             <div className="w-full flex justify-center my-10 min-h-[10vh] max-h-[50vh] border-y-2 border-[#eea221]">
 
@@ -135,7 +142,7 @@ useEffect(() => {
                 className="w-6 h-6 p-1 bg-white opacity-50 rounded-full cursor-pointer rotate-180  "
                 onClick={prevSlideBanner}
               />
-                <img className="h-[50vh] object-cover cursor-pointer w-11/12 object-top" src={banner[currentBannerIndex]} alt="banner" />
+                <img className="h-[50vh] object-fill lg:object-cover cursor-pointer w-11/12 object-top" src={banner[currentBannerIndex]} alt="banner" />
                 <img
                 src="../arrowcarousel.png"
                 className="w-6 h-6 p-1 bg-white opacity-50 rounded-full cursor-pointer  "
@@ -144,6 +151,77 @@ useEffect(() => {
               </div>
           </div>
               </div>
+
+              {/* ------------------------------------------------------------------------------------------------ */}
+
+                {/* <div className="min-h-[30vh] w-6/12 py-10 justify-center gap-5 flex bg-[#053b50a3] ">
+                <motion.div
+                    initial={{opacity:0}}
+                    animate={{opacity:1}}
+                    exit={{opacity:0}}
+                    key={sale._id}
+                    className="h-[30vh] w-52 flex flex-col border border-[#053b50] rounded-md gap-2 items-center  md:h-[60vh] md:w-[20vw] justify-between md:hover:scale-105 md:transform md:duration-300 shadow-gray-600 shadow-lg bg-[#0e4355b2] p-1 "
+                  >
+                    <img
+                      className=" h-6 fixed top-0 right-1"
+                      onClick={() => handleFavorite(sale._id)}
+                      src={favorite}
+                      alt="favorite"
+                      style={{
+                        filter: favorites.some(
+                          (favoriteItem) => favoriteItem._id === sale._id
+                        )
+                          ? "invert(50%) sepia(98%) saturate(2479%) hue-rotate(320deg) brightness(100%) contrast(101%)"
+                          : "none",
+                      }}
+                    />
+                    <h3 className="text-xs text-white font-bold pb-2">
+                      {sale.name}
+                    </h3>
+                    <img
+                      className="w-full h-32 bg-white border md:w-full md:h-40 object-contain"
+                      src={sale.photo}
+                      alt=""
+                    />
+                    <p className="text-white text-xs line-clamp-5">
+                      {sale.description}
+                    </p>
+                    <p className="text-white w-3/4 text-end font-semibold">
+                      ${sale.price}
+                    </p>
+                    <div className="w-full flex gap-1">
+                      <Link
+                        to={`/${sale._id}/details`}
+                        className="w-full h-5 text-xs text-white rounded-lg text-center bg-[#053b50]"
+                      >
+                        See more
+                      </Link>
+                      <p
+                        onClick={() => {
+                          if (
+                            !cart.find(
+                              (item) => item.product._id === sale._id
+                            )
+                          ) {
+                            handleCart(sale?._id);
+                          }
+                        }}
+                        className={`px-5 cursor-pointer h-5 text-xs text-white rounded-lg text-center ${
+                          !cart.find(
+                            (item) => item.sale?._id === sale._id
+                          )
+                            ? "bg-[#053b50]"
+                            : "bg-[#43626e56]"
+                        }`}
+                      >
+                        Add
+                      </p>
+                    </div>
+                  </motion.div>
+                  <img className=" h-[60vh]" src={offchrist} alt="christmas" />
+                </div> */}
+
+              {/* ------------------------------------------------------------------------------------------------ */}
           <div
             style={{
               backgroundImage: `url(${background})`,
@@ -239,6 +317,8 @@ useEffect(() => {
                 </AnimatePresence>
             </div>
           </div>
+
+          
 
           <div className="w-full min-h-36 relative flex flex-col justify-center gap-2 items-center border-2 bg-[#0e4355b2] rounded-xl shadow-sm shadow-black p-2 border-gray-600">
             <img
