@@ -3,6 +3,7 @@ import axios from "axios";
 
 const newProduct = createAsyncThunk("newProduct", async (productData)=>{
     try {
+        console.log(productData)
         const res = await axios.post("http://localhost:8080/products", productData)
         console.log(res.data)
         return res.data

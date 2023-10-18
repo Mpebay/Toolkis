@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import newProduct from '../../../redux/actions/actionNewProduct'
+import Swal from 'sweetalert2'
 
 
 const UploadItem = () => {
@@ -52,21 +53,42 @@ const UploadItem = () => {
             photo: refPhoto,
             price: Number(refPrice),
             details: {
-                "PowerSupply": refPowerSupply,
-                "NumberOfSpeeds": refSpeeds,
-                "Voltage": refVoltage,
-                "Amperage": refAmperage,
-                "Material": refMaterial,
-                "ItemWeight": refItemWeight,
-                "ItemDimensions": refItemDimensions
+                PowerSupply: refPowerSupply,
+                Speeds: refSpeeds,
+                Voltage: refVoltage,
+                Amperage: refAmperage,
+                Material: refMaterial,
+                ItemWeight: refItemWeight,
+                ItemDimensions: refItemDimensions
             }
         }
         
         try {
-            console.log(newProductData)
-            await dispatch(newProduct(newProductData))
+
+            const response = await dispatch(newProduct(newProductData));
+
+            if (response && response.payload.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Product created successfully!',
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Something went wrong!',
+                    text: response.error || 'Please, check the data and try again later.',
+                });
+            }
         } catch (error) {
-            console.log(error)
+            console.error(error);
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Something went wrong!',
+                text: 'Please, check the data and try again later.',
+            });
         }
     
     }
