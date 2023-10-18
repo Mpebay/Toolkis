@@ -109,16 +109,19 @@ const Products = () => {
         {filteredProducts.length > 0 ? (
           <div className='cardcontainer md:w-max-[75vw] min-h-3/4 flex flex-wrap p-2 items-center justify-center gap-5 md:my-5'>
             {filteredProducts.map((product) => (
-              <div key={product._id} className='h-72 w-36 flex flex-col border border-[#053b50] rounded-md gap-2 items-center md:w-52 md:h-80 justify-between md:hover:scale-110 md:transform md:duration-300 shadow-gray-600 shadow-lg bg-[#0e4355b2] p-1 '>
+              <div key={product._id} className='h-72 w-48 flex flex-col border border-[#053b50] rounded-md gap-2 items-center md:w-52 md:h-80 justify-between md:hover:scale-110 md:transform md:duration-300 shadow-gray-600 shadow-lg bg-[#0e4355b2] p-1 '>
+                <div className='flex w-full flex-row-reverse md:justify-center'>
+
                 <img
-                  className=' h-6 fixed top-0 right-1'
+                  className=' h-6 max-md:w-2/12 md:fixed top-0 right-1'
                   onClick={() => handleFavorite(product._id)}
                   src={favorite}
                   alt="favorite"
                   style={{ filter: favorites.some((favoriteItem) => favoriteItem._id === product._id) ? 'invert(50%) sepia(98%) saturate(2479%) hue-rotate(320deg) brightness(100%) contrast(101%)' : 'none' }}
-                />
-                <h3 className='text-xs text-white font-bold pb-2'>{product.name}</h3>
-                <img className='w-full h-20 bg-white border md:w-full md:h-40 md:object-contain' src={product.photo} alt="" />
+                  />
+                <h3 className='text-xs max-md:w-10/12 text-center  text-white font-bold pb-2'>{product.name}</h3>
+                  </div>
+                <img className='w-full h-36 bg-white border md:w-full md:h-40 md:object-contain' src={product.photo} alt="" />
                 <p className='text-white text-xs line-clamp-3'>{product.description}</p>
                 <p className='text-white w-3/4 text-end font-semibold'>${product.price}</p>
                 <div className='w-full flex gap-1'>

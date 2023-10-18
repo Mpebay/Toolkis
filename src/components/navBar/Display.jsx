@@ -54,7 +54,6 @@ const Display = ({subMenu,setSubMenu,show,setShow,categoriesAndSub,handleList}) 
       
        </motion.div>}
           <Link onClick={()=>setShow(!show)} to={"/diy"}>DIY</Link>
-          <Link onClick={()=>setShow(!show)} to={"#"}>Hot Sales</Link>
           <Link onClick={()=>setShow(!show)} to={"/contact"}>Contact Us</Link>
           <Link onClick={()=>setShow(!show)} to={"/workwithus"}>Work with us</Link>
         </motion.div>

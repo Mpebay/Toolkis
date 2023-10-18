@@ -184,7 +184,7 @@ const NavBar = () => {
           )}
         </AnimatePresence>
       </motion.div>
-      <div className="h-[23vh] bg-[#f0ebe3] w-full">
+      <div className="h-[30vh] bg-[#f0ebe3] w-full">
         {/* ---------------------------------------------------------------------- */}
       </div>
     </>
