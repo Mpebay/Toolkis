@@ -18,6 +18,7 @@ const itemsReducer = createReducer(initialState,(builder)=>{
     builder
     .addCase(
         allProducts.fulfilled, (state, action)=>{
+            console.log(action.payload);
             state.allItems = action.payload.product
             state.pending = false
         }

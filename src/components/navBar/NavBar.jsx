@@ -145,7 +145,6 @@ const NavBar = () => {
             <Link to={"/"} className=" hover:text-[#eea221] cursor-pointer">Home</Link>
             <Link to={"/products"} className=" hover:text-[#eea221] cursor-pointer">All Products</Link>
             <Link to={"/diy"} className=" hover:text-[#eea221] cursor-pointer">DIY</Link>
-            <Link className=" hover:text-[#eea221] cursor-pointer">Hot Sales</Link>
             <Link to={"/contact"} className=" hover:text-[#eea221] cursor-pointer">Contact Us</Link>
             <Link to={"/workwithus"} className=" hover:text-[#eea221] cursor-pointer">Work With Us</Link>
           </div>
@@ -159,7 +158,7 @@ const NavBar = () => {
       </motion.div> }
       </AnimatePresence>
       </motion.div>
-      <div className="h-[23vh] bg-[#f0ebe3] w-full">
+      <div className="h-[30vh] bg-[#f0ebe3] w-full">
         {/* ---------------------------------------------------------------------- */}
       </div>
     </>
