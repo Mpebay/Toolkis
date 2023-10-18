@@ -11,7 +11,7 @@ const AdminPanel = () => {
   };
 
   return (
-    <div className="text-black bg-[#f0ebe3] p-5 mt-10 w-full md:flex gap-5 lg:justify-around">
+    <div className="text-black bg-[#f0ebe3] p-5 w-full md:flex gap-5 lg:justify-around">
       <div className="filterbox rounded-md border-2 mb-2 border-[#053b50] p-4 gap-3 flex flex-col items-center justify-center md:w-[25vw] md:h-80 md:py-10 md:sticky top-10 md:gap-5 bg-[#0e4355b2]">
         <h1 className="text-white text-2xl font-semibold">Admin Panel</h1>
         <div className="flex md:flex-col gap-5 text-center">

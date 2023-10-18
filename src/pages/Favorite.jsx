@@ -2,11 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFavorite } from '../../redux/actions/actionFavorite';
-import  actionCart  from '../../redux/actions/actionCart';
+import actionCart from '../../redux/actions/actionCart';
 
 const Favorite = () => {
   const favorites = useSelector((state) => state.userReducer.favorites);
   const { allItems } = useSelector((store) => store.itemsReducer);
+  const { role } = useSelector((store) => store.userReducer.user)
 
   console.log(favorites)
   const dispatch = useDispatch();
@@ -16,10 +17,10 @@ const Favorite = () => {
     dispatch(removeFavorite({ _id: productId }));
   };
 
-   const handleCart = (id)=>{
-     const favorite = allItems.find(item => item._id === id)
-     dispatch(actionCart(favorite))
-   }
+  const handleCart = (id) => {
+    const favorite = allItems.find(item => item._id === id)
+    dispatch(actionCart(favorite))
+  }
 
   return (
     <div className='w-full bg-[#f0ebe3] min-h-screen md:min-w-full flex flex-col justify-start items-center'>
@@ -41,7 +42,11 @@ const Favorite = () => {
                 <p>${favoriteItem.price}</p>
                 <p className='line-clamp-2'>{favoriteItem.description}</p>
                 <button className='w-20 bg-red-500 text-white rounded-lg px-2 mt-4' onClick={() => handleDelete(favoriteItem._id)}>Delete</button>
-                <button className='w-32 bg-[#7D9D9C] text-white rounded-lg px-2 mt-4' onClick={() => handleCart(favoriteItem._id)}>Add to cart</button>
+                {role === 1 || role === 2 ? ( // Verifica el rol del usuario
+                  <button className="w-32 bg-[#7D9D9C] text-white rounded-lg px-2 mt-4" onClick={() => handleCart(favoriteItem._id)}>
+                    Add to cart
+                  </button>
+                ) : null}
               </div>
             </div>
           ))

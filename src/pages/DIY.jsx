@@ -53,9 +53,9 @@ const DIY = () => {
     <>
 
     
-    <div className='w-full h-full'>
-          <div className="w-full h-12 mt-20 flex justify-center text-center">
-              <h1 className="text-5xl font-semibold text-[#053b50]">DO IT YOURSELF</h1>
+    <div className='w-full h-full bg-[#f0ebe3]'>
+          <div className="w-full h-12 flex justify-center text-center">
+              <h1 className="text-xl mt-8 md:text-5xl">DO IT YOURSELF</h1>
           </div>
           <div className="flex flex-col justify-center items-center">
               <h1 className="text-xl text-[#053b50] font-semibold mt-16 md:mt-8">Welcome to Do It Yourself!</h1>

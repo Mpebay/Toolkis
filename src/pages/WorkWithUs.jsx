@@ -26,9 +26,9 @@ const WorkWithUs = () => {
 
   return (
 
-      <div className="w-full min-h-screen flex flex-col">
-          <div className="w-full h-12 mt-20 flex justify-center text-center">
-              <h1 className="text-5xl font-semibold text-[#053b50]">WORK WITH US</h1>
+      <div className="w-full min-h-screen flex flex-col bg-[#f0ebe3]">
+          <div className="w-full h-12 flex justify-center text-center">
+              <h1 className="text-xl mt-8 md:text-5xl">WORK WITH US</h1>
           </div>
           <div className="flex justify-center">
               <h1 className="text-3xl text-[#053b50] font-semibold mt-16 md:mt-8">Featured Job Offers</h1>

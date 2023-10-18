@@ -37,7 +37,7 @@ const Register = () => {
 
   return (
     <div className='w-full min-h-screen bg-[#f0ebe3] flex flex-col justify-center gap-10 p-5 items-center'>
-      <div className='w-full min-h-12 text-center text-[#f0ebe3] p-5 bg-[#053b50]'>
+      <div className='w-full min-h-12 text-center text-[#f0ebe3] p-5 bg-[#053b50] md:mt-28'>
         <h1 className='font-bold'>Welcome!</h1>
         <h3 className='font-semibold text-sm'>Sign up, and unlock full access to our website!</h3>
       </div>
