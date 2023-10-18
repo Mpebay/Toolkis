@@ -31,6 +31,7 @@ const EditItem = () => {
     });
 
     useEffect(() => {
+        console.log(product)
         if (product) {
             setFormData({
                 name: product.name,
@@ -41,13 +42,13 @@ const EditItem = () => {
                 description: product.description,
                 photo: product.photo,
                 price: product.price,
-                powerSupply: product.powerSupply,
-                numSpeeds: product.numSpeeds,
-                voltage: product.voltage,
-                amperage: product.amperage,
-                material: product.material,
-                itemWeight: product.itemWeight,
-                itemDimensions: product.itemDimensions,
+                powerSupply: product.details.PowerSupply,
+                numSpeeds: product.details.Speeds,
+                voltage: product.details.Voltage,
+                amperage: product.details.Amperage,
+                material: product.details.Material,
+                itemWeight: product.details.ItemWeight,
+                itemDimensions: product.details.ItemDimensions,
             });
         } else {
             axios.get(`http://localhost:8080/products/${id}`)
@@ -220,62 +221,13 @@ const EditItem = () => {
                     value={formData.itemDimensions}
                     onChange={handleChange}
                 />
-                <button type="submit" className="btn-primary">Save Changes</button>
+                <button className='w-48 md: rounded-full m-5 justify-center self-end border border-gray-500 bg-green-400' onClick={(e) => {
+                    e.preventDefault();
+                    handleForm();
+                }}>Save changes</button>
             </form>
         </div>
     );
 };
 
 export default EditItem;
-
-
-// import axios from 'axios';
-// import React, { useRef, useState, useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import editProduct from '../../../redux/actions/actionEditProduct';
-
-// const EditItem = () => {
-
-
-
-
-//     return (
-//         <div className='w-full min-h-screen my-10 p-3 flex flex-col items-center justify-center'>
-//             <h1 className='font-semibold text-3xl text-center my-5'>Edit Item</h1>
-//             <form className='flex flex-col w-full md:w-1/2' action="">
-//                 <label className='font-semibold' htmlFor="">Name:</label>
-//                 <input className='border border-gray-300 shadow-sm shadow-black' type="text" />
-//                 <label className='font-semibold' htmlFor="">Brand:</label>
-//                 <input className='border border-gray-300 shadow-sm shadow-black' type="text" />
-//                 <label className='font-semibold' htmlFor="">Category:</label>
-//                 <input className='border border-gray-300 shadow-sm shadow-black' type="text" />
-//                 <label className='font-semibold' htmlFor="">Subcategory:</label>
-//                 <input className='border border-gray-300 shadow-sm shadow-black' type="text" />
-//                 <label className='font-semibold' htmlFor="">Stock:</label>
-//                 <input className='border border-gray-300 shadow-sm shadow-black' type="text" />
-//                 <label className='font-semibold' htmlFor="">Description:</label>
-//                 <input className='border border-gray-300 shadow-sm shadow-black' type="text" />
-//                 <label className='font-semibold' htmlFor="">Photo</label>
-//                 <input className='border border-gray-300 shadow-sm shadow-black' type="text" />
-
-//                 <h3 className='font-semibold text-xl text-center mb-5 mt-10'>Item Details</h3>
-//                 <label className='font-semibold' htmlFor="">Power Supply:</label>
-//                 <input className='border border-gray-300 shadow-sm shadow-black' type="text" />
-//                 <label className='font-semibold' htmlFor="">Number of Speeds:</label>
-//                 <input className='border border-gray-300 shadow-sm shadow-black' type="text" />
-//                 <label className='font-semibold' htmlFor="">Voltage:</label>
-//                 <input className='border border-gray-300 shadow-sm shadow-black' type="text" />
-//                 <label className='font-semibold' htmlFor="">Amperage:</label>
-//                 <input className='border border-gray-300 shadow-sm shadow-black' type="text" />
-//                 <label className='font-semibold' htmlFor="">Material:</label>
-//                 <input className='border border-gray-300 shadow-sm shadow-black' type="text" />
-//                 <label className='font-semibold' htmlFor="">Item Weight:</label>
-//                 <input className='border border-gray-300 shadow-sm shadow-black' type="text" />
-//                 <label className='font-semibold' htmlFor="">Item Dimensions:</label>
-//                 <input className='border border-gray-300 shadow-sm shadow-black' type="text" />
-//             </form>
-//         </div>
-//     )
-// }
-
-// export default EditItem
