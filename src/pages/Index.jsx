@@ -220,13 +220,7 @@ useEffect(() => {
                       onClick={() => handleFavorite(sale?._id)}
                       src={favorite}
                       alt="favorite"
-                      style={{
-                        filter: favorites.some(
-                          (favoriteItem) => favoriteItem._id === sale?._id
-                        )
-                          ? "invert(50%) sepia(98%) saturate(2479%) hue-rotate(320deg) brightness(100%) contrast(101%)"
-                          : "none",
-                      }}
+                      style={{ filter: favorites.some((favoriteItem) => favoriteItem._id === sale?._id) ? 'none' : 'invert(50%) sepia(98%) saturate(2479%) hue-rotate(320deg) brightness(0%) contrast(101%)'  }}
                     />
                     <h3 className="text-xs text-white font-bold pb-2">
                       {sale?.name}
@@ -259,16 +253,8 @@ useEffect(() => {
                             handleCart(sale?._id);
                           }
                         }}
-                        className={`px-5 cursor-pointer h-5 text-xs text-white rounded-lg text-center ${
-                          !cart.find(
-                            (item) => item.sale?._id === sale._id
-                          )
-                            ? "bg-[#053b50]"
-                            : "bg-[#43626e56]"
-                        }`}
-                      >
-                        Add
-                      </p>
+                        className={`px-5 cursor-pointer h-5 text-xs text-white rounded-lg text-center ${(!cart.find(item=> item.product?._id === sale?._id))?"bg-[#053b50]": "bg-[#43626e56]" }`} >{`${(!cart.find(item=> item.product?._id === sale?._id))? "Add" : "Added"}`}</p>
+                        
                     </div>
                   </motion.div>)})}
                   </div>
@@ -337,17 +323,11 @@ useEffect(() => {
                     className="h-72 w-52 flex flex-col border border-[#053b50] rounded-md gap-2 items-center md:w-52 md:h-80 justify-between md:hover:scale-105 md:transform md:duration-300 shadow-gray-600 shadow-lg bg-[#0e4355b2] p-1 "
                   >
                     <img
-                      className=" h-6 fixed top-0 right-1"
+                      className=" h-6 max-md:w-2/12 md:fixed cursor-pointer top-0 right-1"
                       onClick={() => handleFavorite(product._id)}
                       src={favorite}
                       alt="favorite"
-                      style={{
-                        filter: favorites.some(
-                          (favoriteItem) => favoriteItem._id === product._id
-                        )
-                          ? "invert(50%) sepia(98%) saturate(2479%) hue-rotate(320deg) brightness(100%) contrast(101%)"
-                          : "none",
-                      }}
+                      style={{ filter: favorites.some((favoriteItem) => favoriteItem._id === product._id) ? 'none' : 'invert(50%) sepia(98%) saturate(2479%) hue-rotate(320deg) brightness(0%) contrast(101%)'  }}
                     />
                     <h3 className="text-xs text-white font-bold pb-2">
                       {product.name}
@@ -380,16 +360,7 @@ useEffect(() => {
                             handleCart(product?._id);
                           }
                         }}
-                        className={`px-5 cursor-pointer h-5 text-xs text-white rounded-lg text-center ${
-                          !cart.find(
-                            (item) => item.product?._id === product._id
-                          )
-                            ? "bg-[#053b50]"
-                            : "bg-[#43626e56]"
-                        }`}
-                      >
-                        Add
-                      </p>
+                      className={`px-5 cursor-pointer h-5 text-xs text-white rounded-lg text-center ${(!cart.find(item=> item.product?._id === product._id))?"bg-[#053b50]": "bg-[#43626e56]" }`} >{`${(!cart.find(item=> item.product?._id === product._id))? "Add" : "Added"}`}</p>
                     </div>
                   </motion.div>
                 ))}
