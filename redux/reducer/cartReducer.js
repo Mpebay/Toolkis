@@ -1,9 +1,11 @@
 import { createReducer } from "@reduxjs/toolkit";
 import actionCart from "../actions/actionCart";
 import {eliminateOne,addOne, restOne, eliminateAll} from "../actions/actionEliminateOne";
+import { actionSussesPayment } from "../actions/actionSussesPayment";
 
 const initialState={
-    cart:[]
+    cart:[],
+    alertComplete:false,
 }
 
 const cartReducer = createReducer(initialState,(builder)=>{
@@ -34,6 +36,10 @@ const cartReducer = createReducer(initialState,(builder)=>{
             existingItem.quantity -= 1
             existingItem.total = existingItem.product.price * existingItem.quantity}
         }
+    })
+    .addCase(actionSussesPayment,(state,action)=>{
+
+        state.alertComplete = action.payload
     })
 })
 

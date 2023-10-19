@@ -163,7 +163,7 @@ const NavBar = () => {
         <AnimatePresence>
           {search ? <MobileSearchInput isVisible={isVisible} /> : null}
         </AnimatePresence>
-        <div className="bg-[#053b50] hidden lg:flex text-white font-medium tracking-widest justify-start gap-5 px-5 relative z-20">
+        <div className="bg-[#053b50] hidden lg:flex text-white font-medium tracking-widest justify-around gap-5 px-5 relative z-20">
           <p onClick={() => setShow(!show)} className="hover-text-[#eea221] cursor-pointer flex">Categories <img className={`h-6 ${show ? "rotate-180" : ""}`} src={arrowR} alt="colapse" /></p>
           <Link to={"/"} className="hover-text-[#eea221] cursor-pointer">Home</Link>
           <Link to={"/products"} className="hover-text-[#eea221] cursor-pointer">All Products</Link>

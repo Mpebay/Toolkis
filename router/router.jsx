@@ -14,7 +14,7 @@ import AdminPanel from "../src/pages/AdminPanel";
 import CategoryPage from "../src/pages/CategoryPage";
 import MainCategoryPage from "../src/pages/MainCategoryPage";
 import EditItem from "../src/components/forms/EditItem";
-import PostPayment from "../src/pages/PostPayment";
+import SuccesPayment from "../src/components/utils/SussesPayment";
 
 const router = createBrowserRouter([
     {path: "/",
@@ -48,9 +48,11 @@ const router = createBrowserRouter([
     element:<CategoryPage/>},
         {path: "/category/:main",
     element:<MainCategoryPage/>},
-      {path: "/post-payment",
-    element:<PostPayment/>},
+     
     ]  
-}
+},
+    {path:"/succesPayment",
+    element:<SuccesPayment/>
+    }
 ])
 export default router
