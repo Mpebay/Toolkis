@@ -12,6 +12,9 @@ import garden from "../../public/banner-flat-lay-gardening-tools-260nw-165419085
 import hardware from "../../public/Banner1-3.webp"
 import handtools from "../../public/think-blue-handtools.png"
 import salesChrismas from "../../public/sale-transparent-background-5.png"
+import iconShip from "../../public/shipped-truck-svgrepo-com.svg"
+import iconAten from "../../public/shipping-svgrepo-com.svg"
+import iconPay from "../../public/dollar1-svgrepo-com.svg"
 import Swal from 'sweetalert2';
 import { addFavorite,removeFavorite } from "../../redux/actions/actionFavorite";
 import { AnimatePresence, motion } from "framer-motion";
@@ -52,11 +55,14 @@ const Index = () => {
   
 
   const banner =[
-    blackand,
-    festbanner,
+    {img:blackand,
+    name: "black & decker"},
+    {img:festbanner,
+    name:"festool"},
   ]  
   const images = [
-    
+    "https://habitat-nola.org/wp-content/uploads/2023/04/Milwaukee_Logo.svg.png",
+    "https://cdn.freebiesupply.com/logos/thumbs/2x/hitachi-2-logo.png",
     "../b&d.png",
     "../boschlogo.png",
     "../bahco-logo.png",
@@ -168,7 +174,7 @@ useEffect(() => {
   return (
     <>
       <div className="w-full min-h-screen">
-        <div className="w-full min-h-screen bg-[#f0ebe3] flex flex-col items-center gap-5 ">
+        <div className="w-full min-h-screen bg-[#f0ebe3] flex flex-col items-center gap-10 ">
           <div className="w-full border-y-2 md:border-[#0e4355] justify-center flex md:bg-[#0e4355d8]">
             <div className="w-full flex justify-center md:my-10  md:min-h-[10vh] md:max-h-[50vh] md:border-y-2 md:border-[#eea221]">
 
@@ -179,7 +185,7 @@ useEffect(() => {
                 className="w-6 h-6 p-1 bg-white hidden md:flex opacity-50 rounded-full cursor-pointer rotate-180  "
                 onClick={prevSlideBanner}
               />
-                <img className="md:h-[50vh] h-[25vh] object-fill lg:object-cover cursor-pointer md:border-x-2 border-[#eea221] w-full md:w-11/12 object-top" src={banner[currentBannerIndex]} alt="banner" />
+                <Link to={`/brand/${banner[currentBannerIndex].name}`}><img className="md:h-[50vh] h-[25vh] border-y-2 border-[#0e4355d8] md:border-y-0 object-fill lg:object-cover cursor-pointer md:border-x-2 md:border-[#eea221] w-full md:w-11/12 object-top" src={banner[currentBannerIndex].img} alt="banner" /></Link>
                 <img
                 src="../arrowcarousel.png"
                 className="w-6 h-6 p-1 bg-white hidden md:flex opacity-50 rounded-full cursor-pointer  "
@@ -419,7 +425,26 @@ useEffect(() => {
             </div>
           </div>
 
-          <div className="flex flex-col gap-5 items-center w-full md:flex-row md:items-center md:justify-center">
+          <div className="w-10/12 py-3 flex flex-col md:flex-row gap-2 justify-center items-center">
+                  <div className="md:w-4/12 flex flex-col items-center rounded-lg p-3">
+                  <p className="text-3xl text-center text-[#053b50] font-semibold">Reliable worldwide delivery</p>
+                    <img className="h-36" src={iconShip} alt="" />
+                    <p className="text-2xl text-center text-[#053b50] font-normal">We ship to your doorstep, wherever you are</p>
+                  </div>
+                  <div className="md:w-4/12 flex flex-col items-center border-y md:border-y-0 md:border-x border-[#053b50] p-3">
+                  <p className="text-3xl text-center text-[#053b50] font-semibold">Secure packaging</p>
+                    <img className="h-36" src={iconAten} alt="" />
+                    <p className="text-2xl text-center text-[#053b50] font-normal">We ensure your items arrive in perfect condition</p>
+                  </div>
+                  <div className="md:w-4/12 flex flex-col items-center rounded-lg p-3">
+                    <p className="text-3xl text-center text-[#053b50] font-semibold">Pay with the payment method you prefer</p>
+                    <img className="h-36" src={iconPay} alt="" />
+                    <p className="text-2xl text-center text-[#053b50] font-normal">Shop securely: we use Mercado Pago technology. </p>
+                  </div>
+                  
+          </div>
+
+          {/* <div className="flex flex-col gap-5 items-center w-full md:flex-row md:items-center md:justify-center">
             <div className="bg-[#053b50] border-2 border-gray-400 rounded-xl shadow-md shadow-black w-full md:w-96 h-64 flex flex-col gap-5 items-center justify-center">
               <h1 className="text-2xl text-white">Free shipping</h1>
               <img
@@ -446,8 +471,8 @@ useEffect(() => {
                 Credit, debit, PayPal and cash
               </h3>
             </div>
-          </div>
-          <div className="bg-gray-500 w-full py-5 md:w-full min-h-32 md:h-16 flex flex-col md:flex-row gap-5 items-center justify-center">
+          </div> */}
+          <div className="bg-gray-500 w-full py-5 md:w-full min-h-32 md:h-24 flex flex-row gap-5 items-center justify-around overflow-x-scroll">
             <img
               className="max-w-2/3 max-h-20 md:max-h-12 "
               src="../public/b&d.png"
@@ -466,6 +491,41 @@ useEffect(() => {
             <img
               className="max-w-2/3 max-h-20 md:max-h-12 "
               src="../public/craftsmanlogo.png"
+              alt=""
+            />
+            <img
+              className="max-w-2/3 max-h-20 md:max-h-12 "
+              src="https://cdn.freebiesupply.com/logos/large/2x/makita-1-logo-png-transparent.png"
+              alt=""
+            />
+            <img
+              className="max-w-2/3 max-h-20 md:max-h-12 "
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Park_Tool_logo.svg/1280px-Park_Tool_logo.svg.png"
+              alt=""
+            />
+            <img
+              className="max-w-3/4 max-h-28 md:max-h-12 "
+              src="https://cdn.freebiesupply.com/logos/large/2x/stanley-1-logo-png-transparent.png"
+              alt=""
+            />
+            <img
+              className="max-w-2/3 max-h-20 md:max-h-12 "
+              src="https://habitat-nola.org/wp-content/uploads/2023/04/Milwaukee_Logo.svg.png"
+              alt=""
+            />
+            <img
+              className="max-w-2/3 max-h-20 md:max-h-12 "
+              src="https://cdn.freebiesupply.com/logos/large/2x/stanley-logo-png-transparent.png"
+              alt=""
+            />
+            <img
+              className="max-w-2/3 max-h-24 md:max-h-24"
+              src="https://cdn.freebiesupply.com/logos/thumbs/2x/hitachi-2-logo.png"
+              alt=""
+            />
+            <img
+              className="max-w-2/3 max-h-20 md:max-h-12 "
+              src="https://assets.stickpng.com/images/5ea06465dd0fd60004a54098.png"
               alt=""
             />
           </div>

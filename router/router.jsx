@@ -15,6 +15,7 @@ import CategoryPage from "../src/pages/CategoryPage";
 import MainCategoryPage from "../src/pages/MainCategoryPage";
 import EditItem from "../src/components/forms/EditItem";
 import SuccesPayment from "../src/components/utils/SussesPayment";
+import MarcaPage from "../src/pages/MarcaPage";
 
 const router = createBrowserRouter([
     {path: "/",
@@ -48,6 +49,8 @@ const router = createBrowserRouter([
     element:<CategoryPage/>},
         {path: "/category/:main",
     element:<MainCategoryPage/>},
+        {path: "/brand/:main",
+    element:<MarcaPage/>},
      
     ]  
 },
