@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useRef, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import editUser from '../../../redux/actions/actionEditUser';
+import Swal from 'sweetalert2';
+
 
 const EditUser = () => {
     const [users, setUsers] = useState([]);
@@ -52,9 +54,34 @@ const EditUser = () => {
             role: role.current.value,
             telephone: telephone.current.value
         };
+        
+        try {    
+            console.log(editedUserData)
+            const response = await dispatch(editUser(editedUserData))
+            console.log(response)
+            if (response && response.payload) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'User edited successfully!',
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Something went wrong!',
+                    text: 'Please, check the data and try again later.',
+                });
+            }
+        } catch (error) {
+            console.log(error)
 
-        console.log(editedUserData)
-        dispatch(editUser(editedUserData))
+            Swal.fire({
+                icon: 'error',
+                title: 'Something went wrong!',
+                text: 'Please, check the data and try again later.',
+            });
+        }
 
         setSelectedUserId("");
         name.current.value = "";

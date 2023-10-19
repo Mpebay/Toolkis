@@ -78,7 +78,7 @@ const UploadItem = () => {
                 Swal.fire({
                     icon: 'error',
                     title: 'Something went wrong!',
-                    text: response.error || 'Please, check the data and try again later.',
+                    text: 'Please, check the data and try again later.',
                 });
             }
         } catch (error) {

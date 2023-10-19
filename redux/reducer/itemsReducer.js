@@ -47,7 +47,7 @@ const itemsReducer = createReducer(initialState,(builder)=>{
     )
     .addCase(
         newProduct.fulfilled, (state, action) => {
-            state.allItems = action.payload;
+            state.allItems = [...state.allItems, action.payload.response];
             state.pending = false;
         }
     )
