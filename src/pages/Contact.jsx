@@ -6,22 +6,22 @@ const Contact = () => {
 <>  
     <div className=' flex flex-col bg-[#f0ebe3] md:flex md:flex-wrap md:min-h-screen'>
         <div className='flex h-1/6 justify-center items-center md:justify-center '>
-            <h1 className='text-xl md:text-5xl mt-8'>CONTACT</h1>
+            <h1 className='text-xl md:text-5xl font-semibold mt-8'>CONTACT US</h1>
         </div>
-        <div className='flex items-center '>
+        <div className='flex items-center px-8'>
             <div className=' md:w-1/2 md:h-screen '>
                 <div className='w-full h-5/6 flex flex-col p-4 gap-2 justify-center'>
                     <div className='flex flex-col'>
                         <label className=' font-semibold' htmlFor="">Name:</label>
-                        <input className='border border-gray-300 shadow-black shadow-sm ' type="text" name="" id="" />
+                        <input className='border border-gray-300 outline-none shadow-black shadow-sm ' type="text" name="" id="" />
                     </div>
                     <div className='flex flex-col'>
                         <label className=' font-semibold' htmlFor="">Email</label>
-                        <input className='border border-gray-300 shadow-black shadow-sm' type="email" name="" id="" />
+                        <input className='border border-gray-300 outline-none shadow-black shadow-sm' type="email" name="" id="" />
                     </div>
                     <div className='flex flex-col'>
                         <label className=' font-semibold' htmlFor="">Message</label>
-                        <textarea className='border border-gray-300 shadow-black shadow-sm' name="" id="" cols="30" rows="10"></textarea>
+                        <textarea className='w-full border resize-none border-gray-300 outline-none shadow-black shadow-sm' name="" id="" cols="30" rows="10"></textarea>
                     </div>
                     <div className='flex justify-center md:flex md:justify-end'>
                         <button className='flex w-3/4 justify-center m-2 bg-[#7D9D9C] rounded-md p-2 md:w-1/4 md:hover:bg-emerald-600 text-white md:hover:scale-110 md:hover:font-bold md:transform duration-300' type="submit">Send</button>
@@ -39,7 +39,7 @@ const Contact = () => {
                 </div>  
             </div>
             
-            <img className="w-1/2 opacity-60 ms-2 me-2 mb-32 max-md:hidden object-contain " src="./imgContacto.jpg" alt="" />
+            <img className="w-1/2 opacity-60 rounded-md ms-2 me-2 mb-32 max-md:hidden object-cover " src="./imgContacto.jpg" alt="" />
             
         </div>
     </div>

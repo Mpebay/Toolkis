@@ -43,7 +43,7 @@ const MobileSearchInput = ({isVisible}) => {
   return (
     <div className='flex justify-center'>
     <motion.div key={"MobileSearchingInput"} initial={{y:-15}} animate={{y:0}} exit={{y:-15}} className="justify-center relative flex gap-2 px-2  items-center w-full lg:hidden" ref={searchContainerRef}>
-            <input onChange={()=> setSearch(inputRef.current?.value) } ref={inputRef} className="w-9/12 h-5 text-black " type="text" />
+            <input onChange={()=> setSearch(inputRef.current?.value) } ref={inputRef} className="w-9/12 h-5 text-black outline-double p-2 " type="text" />
     </motion.div>
     {showSearch && search?.length > 0 && list.length > 0 &&
     <div className={`bg-white w-9/12 absolute md:hidden border-2 z-30 ${isVisible?"top-[21vh]":"top-[12vh]"} h-40 overflow-auto border-[#053b50]` } ref={searchContainerRef}>

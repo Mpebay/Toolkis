@@ -52,24 +52,24 @@ const ModalCart = ({ setCartShow, cartShow }) => {
                       <Link to={`/${item.product?._id}/details`} className="line-clamp-1 hover:text-[#eea221]">{item.product?.name}</Link>
                     </div>
                     <form className="text-sm w-1/12" action="">
-                      $ {item.product?.price}
+                     {item.product?.price.toLocaleString("en-US", { style: "currency", currency: "USD" })}
                     </form>
                     <div className="flex gap-3 w-4/12 justify-center">
 
-                      <div onClick={() => dispatch(restOne(item.product?._id))} className={`flex items-center border ${item?.quantity > 1 ? "border-[#eea221] cursor-pointer" : "text-gray-700"}  px-3 h-6 pb-1 rounded-md`}>
-                        <p className={`text-xl select-none font-bold ${item?.quantity > 1 ? "text-[#eea221]  cursor-pointer" : "text-gray-700"}  `} >
+                      <div onClick={() => dispatch(restOne(item.product?._id))} className={`flex items-center bg-[#053b50] border ${item?.quantity > 1 ? "border-[#eea221] cursor-pointer" : "text-gray-700"}  px-3 h-6 pb-1 rounded-md`}>
+                        <p className={`text-xl  select-none font-bold ${item?.quantity > 1 ? "text-white  cursor-pointer" : "text-white"}  `} >
                           -
                         </p>
                       </div>
                       <p className="select-none">{item?.quantity}</p>
-                      <div onClick={() => dispatch(addOne(item.product?._id))} className="flex items-center border border-[#eea221] cursor-pointer px-3 h-6 pb-1 rounded-md">
-                        <p className="text-xl font-bold text-[#eea221] select-none">
+                      <div onClick={() => dispatch(addOne(item.product?._id))} className="flex bg-[#053b50] items-center border border-[#eea221] cursor-pointer px-3 h-6 pb-1 rounded-md">
+                        <p className="text-xl font-bold text-white select-none">
                           +
                         </p>
                       </div>
                     </div>
-                    <div onClick={() => dispatch(eliminateOne(item.product?._id))} className="flex items-center border border-amber-600 hover:border-red-600 px-2 h-6 pb-1 rounded-md cursor-pointer">
-                      <p className="text-red-400 hover:text-red-600 select-none" >x</p>
+                    <div onClick={() => dispatch(eliminateOne(item.product?._id))} className="flex items-center bg-[#053b50] border border-amber-600 hover:border-red-600 px-2 h-6 pb-1 rounded-md cursor-pointer">
+                      <p className="text-white select-none" >x</p>
                     </div>
                   </motion.div>
                 ))
@@ -78,7 +78,7 @@ const ModalCart = ({ setCartShow, cartShow }) => {
             <div className="w-full flex">
               <div className="w-full h-6 flex items-center justify-end gap-4 p-2 font-bold">
                 <p>TOTAL</p>
-                <p>$ {totalPrice.toFixed(2)}</p>
+                <p> {totalPrice.toLocaleString("en-US", { style: "currency", currency: "USD" })}</p>
               </div>
             </div>
           </div>

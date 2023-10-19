@@ -43,7 +43,7 @@ const DIY = () => {
               const videoId = response.data.items[0].id.videoId;
               setVideoUrl(`https://www.youtube.com/embed/${videoId}`);
           } else {
-              setVideoUrl(''); // No se encontraron videos, se borra la URL del video
+              setVideoUrl('');
           }
       } catch (error) {
           console.error('Error al buscar videos en YouTube', error);
@@ -54,11 +54,9 @@ const DIY = () => {
 
     
     <div className='w-full h-full bg-[#f0ebe3]'>
-          <div className="w-full h-12 flex justify-center text-center">
-              <h1 className="text-xl mt-8 md:text-5xl">DO IT YOURSELF</h1>
-          </div>
+          
           <div className="flex flex-col justify-center items-center">
-              <h1 className="text-xl text-[#053b50] font-semibold mt-16 md:mt-8">Welcome to Do It Yourself!</h1>
+              <h1 className='text-xl md:text-5xl font-semibold mt-8'>WELCOME TO DO IT YOURSELF!</h1>
               <h1 className="text-xl text-[#053b50] font-semibold mt-4 md:mt-8">A space when you can watch and upload your own way to do something. All related with hardware.</h1>
           </div>
         <div className=' flex min-h-full w-full flex-col gap-3 p-3 items-center'>

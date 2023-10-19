@@ -42,10 +42,10 @@ const Register = () => {
         <h3 className='font-semibold text-sm'>Sign up, and unlock full access to our website!</h3>
       </div>
 
-      <form className='w-full md:w-1/2 min-h-5/6 rounded-lg gap-7 p-4 flex flex-col' onSubmit={handleSubmit}>
+      <form className='w-full md:w-1/2 min-h-5/6 rounded-lg gap-4 p-4 flex flex-col' onSubmit={handleSubmit}>
         <label className='font-semibold' htmlFor="email">Name:</label>
         <input
-          className='border border-gray-300 shadow-black shadow-sm'
+          className='border border-gray-300 outline-none shadow-black shadow-sm'
           type="text"
           name="name"
           id="name"
@@ -54,7 +54,7 @@ const Register = () => {
         />
         <label className='font-semibold' htmlFor="email">Email:</label>
         <input
-          className='border border-gray-300 shadow-black shadow-sm'
+          className='border border-gray-300 outline-none shadow-black shadow-sm'
           type="text"
           name="email"
           id="email"
@@ -63,7 +63,7 @@ const Register = () => {
         />
         <label className='font-semibold' htmlFor="password">Password:</label>
         <input
-          className='border border-gray-300 shadow-black shadow-sm'
+          className='border border-gray-300 outline-none shadow-black shadow-sm'
           type="password"
           name="password"
           id="password"
@@ -72,7 +72,7 @@ const Register = () => {
         />
         <label className='font-semibold' htmlFor="photo">Photo (Optional):</label>
         <input
-          className='border border-gray-300 shadow-black shadow-sm'
+          className='border border-gray-300 outline-none shadow-black shadow-sm'
           type="text"
           name="photo"
           id="photo"
@@ -81,7 +81,7 @@ const Register = () => {
         />
         <label className='font-semibold' htmlFor="telephone">Phone number (Optional):</label>
         <input
-          className='border border-gray-300 shadow-black shadow-sm'
+          className='border border-gray-300 outline-none shadow-black shadow-sm'
           type="text"
           name="telephone"
           id="telephone"

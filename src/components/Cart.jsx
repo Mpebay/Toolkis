@@ -58,32 +58,32 @@ const Cart = () => {
         <div className='w-5/6 font-bold text-xl flex text-start mt-8'>Products</div>
         {cart.length > 0 && (
           cart.map((item) => (
-            <div key={item.product?._id + item.product?.name} className='w-5/6 h-20 bg-gray-400 flex items-center gap-2 rounded-lg p-2 justify-around relative shadow-md hover:scale-110 transform duration-300 cursor-pointer'>
+            <div key={item.product?._id + item.product?.name} className='w-5/6 h-20 pe-4 bg-[#0e4355b2] flex items-center gap-2 rounded-lg p-2 justify-around relative shadow-md hover:scale-110 transform duration-300 cursor-pointer'>
               <img className='w-10 h-10 md:w-20 md:h-20 p-1 rounded-lg' src={item.product?.photo} alt="" />
-              <p className='md:w-3/4 md:line-clamp-1 md:display hidden'>{item.product?.description}</p>
-              <form className='text-sm' action="">Qty.</form>
+              <p className='md:w-3/4 text-white md:line-clamp-1 md:display hidden'>{item.product?.description}</p>
+              <form className='text-sm text-white' action="">Qty.</form>
               <div className="flex gap-3 w-4/12 justify-center">
 
-                <div onClick={() => dispatch(restOne(item.product?._id))} className={`flex items-center border ${item?.quantity > 1 ? "border-[#eea221] cursor-pointer" : "text-gray-700"}  px-3 h-6 pb-1 rounded-md`}>
-                  <p className={`text-xl select-none font-bold ${item?.quantity > 1 ? "text-[#eea221]  cursor-pointer" : "text-gray-700"}  `} >
+                <div onClick={() => dispatch(restOne(item.product?._id))} className={`flex items-center bg-[#053b50] border ${item?.quantity > 1 ? "border-[#eea221] cursor-pointer" : "text-gray-700"}  px-3 h-6 pb-1 rounded-md`}>
+                  <p className={`text-xl select-none font-bold ${item?.quantity > 1 ? "text-white  cursor-pointer" : "text-white"}  `} >
                     -
                   </p>
                 </div>
-                <p className="select-none">{item?.quantity}</p>
-                <div onClick={() => dispatch(addOne(item.product?._id))} className="flex items-center border border-[#eea221] cursor-pointer px-3 h-6 pb-1 rounded-md">
-                  <p className="text-xl font-bold text-[#eea221] select-none">
+                <p className="select-none text-white">{item?.quantity}</p>
+                <div onClick={() => dispatch(addOne(item.product?._id))} className="flex bg-[#053b50] items-center border border-[#eea221] cursor-pointer px-3 h-6 pb-1 rounded-md">
+                  <p className="text-xl font-bold text-white select-none">
                     +
                   </p>
                 </div>
               </div>
-              <p className='w-12 text-center text-sm'>$ {item.product?.price}</p>
+              <p className='w-12 text-center text-sm text-white'> {item.product?.price.toLocaleString("en-US", { style: "currency", currency: "USD" })}</p>
               <img onClick={() => dispatch(eliminateOne(item.product?._id))} className='w-3 h-3 cursor-pointer absolute top-2 right-2' src="./eliminar.png" alt="" />
             </div>
 
           ))
         )}
 
-        <div className='w-5/6 flex justify-end'>
+        <div className='w-5/6 flex justify-end '>
           <div className='w-full h-6 flex items-center justify-end gap-4 p-2 font-bold'>
             <p>TOTAL</p>
             <p>${totalPrice.toFixed(2)}</p>

@@ -45,14 +45,14 @@ const SearchInput = ({isVisible}) => {
     <>
     <div className='hidden md:flex w-10/12 justify-center'>
     <motion.div key={"searchInput"} initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:[0]}} className="justify-center lg:flex gap-2 px-2  items-center w-8/12 hidden" ref={searchContainerRef}>
-              <input onChange={()=> setSearch(inputRef.current?.value) } ref={inputRef}  className="w-full h-8 rounded-sm text-black" type="text" />
+              <input onChange={()=> setSearch(inputRef.current?.value) } ref={inputRef}  className="w-full h-8 rounded-sm text-black outline-double p-2" type="text" />
    </motion.div>
    {showSearch && search?.length > 0 && list.length > 0 &&
-    <div className={`bg-white w-9/12 absolute md:flex text-black flex-col hidden border-2 z-30 ${isVisible?"top-[21vh]":"top-[12vh]"} min-h-40 max-h-[30vh] overflow-auto border-[#053b50]` } ref={searchContainerRef}>
+    <div className={`bg-white w-9/12 absolute md:flex text-black flex-col p-1 hidden border-2 z-30 ${isVisible?"top-[21vh]":"top-[12vh]"} min-h-40 max-h-[30vh] overflow-auto border-[#053b50]` } ref={searchContainerRef}>
       {showSearch && list?.map(item =>
-        (<Link to={`/${item?._id}/details`} key={item?._id} className=" hover:border-2 hover:border-[#eea221] hover:rounded-md flex px-3 items-center justify-between border-b w-full  h-[20vh] border-[#00000058]">
+        (<Link to={`/${item?._id}/details`} key={item?._id} className=" hover:border-1 hover:border-[#eea221] hover:rounded-md flex px-3 items-center justify-between border-b w-full  h-[20vh] border-[#00000058]">
             <div className='w-[12vw]'>
-            <img className=" h-[10vh]" src={item?.photo} alt={item?.name} />  
+              <img className=" h-[10vh]" src={item?.photo} alt={item?.name} />  
             </div>
           <div className=' w-full pl-5'>
             <p className='font-semibold'>{item?.name}</p>

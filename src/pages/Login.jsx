@@ -49,10 +49,10 @@ const Login = () => {
         <h3 className='font-semibold text-sm'>Sign in, and keep enjoying our shopping experience!</h3>
       </div>
 
-      <form className='w-full md:w-1/2 min-h-5/6 rounded-lg gap-7 p-4 flex flex-col' onSubmit={handleSubmit}>
+      <form className='w-full md:w-1/2 min-h-5/6 rounded-lg gap-4 p-4 flex flex-col' onSubmit={handleSubmit}>
         <label className='font-semibold' htmlFor="email">Email:</label>
         <input
-          className='border border-gray-300 shadow-black shadow-sm'
+          className='border border-gray-300 outline-none shadow-black shadow-sm'
           type="text"
           name="email"
           id="email"
@@ -61,7 +61,7 @@ const Login = () => {
         />
         <label className='font-semibold' htmlFor="password">Password:</label>
         <input
-          className='border border-gray-300 shadow-black shadow-sm'
+          className='border border-gray-300 outline-none shadow-black shadow-sm'
           type="password"
           name="password"
           id="password"
