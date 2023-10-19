@@ -2,6 +2,7 @@ import React from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import cross from "../../../public/cross-small-svgrepo-com.svg"
 import arrow from "../../../public/arrow-prev-small-svgrepo-com.svg"
+import arrowR from "../../../public/arrow-down-svgrepo-com.svg"
 import { Link } from 'react-router-dom'
 
 
@@ -21,7 +22,7 @@ const Display = ({subMenu,setSubMenu,show,setShow,categoriesAndSub,handleList}) 
       </div>
       <Link onClick={()=>setShow(!show)} to={"/"}>Home</Link>
       <Link onClick={()=>setShow(!show)} to={"/products"}>All products </Link>
-    <p onClick={()=> setSubMenu(!subMenu)} className=" cursor-pointer ">Product Categories</p>
+    <p onClick={()=> setSubMenu(!subMenu)} className=" cursor-pointer flex items-end ">Product Categories <img className={`h-6 rotate-180 mb-[2px]`} src={arrow} alt="colapse" /> </p>
       {subMenu && <motion.div transition={{ type: "spring", stiffness: 500, damping: 50 }}  initial={{x:"-100%"}} animate={{x:0}} className=" border-r-2 border-[#eea221] overflow-y-auto h-screen py-3 fixed w-full z-50 top-0 bg-[#053b50] ">
       <div className=" flex justify-between ">
         <motion.img  whileHover={{x:"-10%"}} className="h-8 mr-3 cursor-pointer" onClick={() => setSubMenu(!subMenu)} src={arrow} alt="close sub menu" />
