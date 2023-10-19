@@ -31,11 +31,14 @@ const NavBar = () => {
 
   const { categories, allItems } = useSelector((store) => store.itemsReducer);
   const { cart } = useSelector(store => store.cartReducer);
-  const { email, role } = useSelector(store => store.userReducer.user);
-  console.log(email);
+  const { email, role,onLine , photo } = useSelector(store => store.userReducer.user);
+
   const dispatch = useDispatch();
 
   const performLogout = () => {
+
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     dispatch(logout());
     
   };
@@ -139,7 +142,7 @@ const NavBar = () => {
           <div className="flex gap-4">
             <Link to={"/favorite"}><motion.img src={favorite} whileHover={{ scale: 1.3 }} className="h-10 cursor-pointer " alt="Favorites" /></Link>
             <div onClick={() => setIsMenuOpen(!isMenuOpen)} className="h-10 cursor-pointer">
-              <motion.img whileHover={{ scale: 1.3 }} className="h-10 cursor-pointer" src={userIcon} alt="user icon" />
+              <motion.img whileHover={{ scale: 1.3 }} className="h-10 cursor-pointer rounded-full" src={onLine ? photo :userIcon} alt="user icon" />
               {isMenuOpen && (
                 <div className="absolute right-0 mt-4 bg-white shadow-md z-50">
                   {email ? (

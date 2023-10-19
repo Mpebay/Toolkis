@@ -5,7 +5,7 @@ import { Link, useParams } from 'react-router-dom'
 
 const Details = () => {
     const products = useSelector(store => store.itemsReducer.allItems)
-    const role = useSelector((store)=> store.userReducer)
+    const { role } = useSelector((store)=> store.userReducer.user)
     const { id } = useParams()
     console.log(id);
     console.log(products);

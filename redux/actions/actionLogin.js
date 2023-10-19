@@ -5,8 +5,10 @@ const login = createAsyncThunk('login', async (userData) => {
   try {
     console.log(userData)
     const response = await axios.post("http://localhost:8080/auth/signin", userData);
-    console.log(response.data)
+    localStorage.setItem('token', response.data.response.token)
+    localStorage.setItem('email', response.data.response.user.email)
     return response.data
+
   } catch (error) {
     throw error;
   }

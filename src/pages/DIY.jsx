@@ -57,18 +57,29 @@ const DIY = () => {
           
           <div className="flex flex-col justify-center items-center">
               <h1 className='text-xl md:text-5xl font-semibold mt-8'>WELCOME TO DO IT YOURSELF!</h1>
-              <h1 className="text-xl text-[#053b50] font-semibold mt-4 md:mt-8">A space when you can watch and upload your own way to do something. All related with hardware.</h1>
+              <h1 className="text-xl text-center text-[#053b50] font-semibold mt-4 md:mt-8">A space when you can watch and upload your own way to do something. All related with hardware.</h1>
           </div>
         <div className=' flex min-h-full w-full flex-col gap-3 p-3 items-center'>
-          <div className='flex flex-col md:flex-row justify-around'>
-            <div className='border border-black w-full min-h-72 md:w-1/5 md:h-96 bg-[#176B87] rounded-lg flex flex-col items-center '>
+          <div className='flex flex-col md:flex-row justify-around items-center'>
+            <div className='border p-4 border-black w-full min-h-72 md:w-1/3 md:h-1/3  gap-3 bg-[#176B87] rounded-lg flex flex-col items-center '>
 
                 <h3 className='text-white text-2xl'>How to upload a video</h3>
 
-                <h3 className='text-white text-center'>Below or next to this message, you will find a box labeled "upload your video". You should click on it, and it will expand the box for uploading files. Afterward, you should press "upload video," and you will receive a success or error message regarding the upload. Remember to upload practical videos that are no longer than 5 minutes, demonstrating clearly how to use various tools.</h3>
+                <p className='text-white text-start w-full'>
+                    •Click on our "Select a file" button 
+                    </p>
+                <p className='text-white text-start w-full'>
+                •Choose a video file from your pc
+                    </p>
+                <p className='text-white text-start w-full'>
+                •Press "Upload video" (you should receive a success or an error message regarding the upload)
+                    </p>
+                <p className='text-white text-start w-full'>
+                •As a tip: remember to upload practical videos! Make sure they are not longer than 5 minutes, to keep it short, fresh and simple!
+                    </p>
             </div>
         
-            <div className='flex flex-col w-full mt-4 md:w-48 h-96 bg-[#176B87] items-center text-base justify-center rounded-md'>
+            <div className='flex flex-col w-full p-4 mt-4 md:w-48 md:h-1/3 bg-[#176B87] items-center text-base justify-center rounded-md'>
             <div>
               <h1 className='text-white'>Upload your video</h1>
             </div>
@@ -87,7 +98,7 @@ const DIY = () => {
           </div>
           </div>
 
-            <div className='w-[100vh] rounded-md h-96 bg-[#176B87]'>
+            <div className='w-11/12 rounded-md h-full p-5 bg-[#176B87]'>
             <div className=' items-center flex flex-col'>
                 <label htmlFor="" id='youtube'></label>
                 <input type="text" placeholder="Send a keyword" value={keyword}
@@ -96,12 +107,12 @@ const DIY = () => {
                 </div>
                 
 
-                <div className='h-52 w-full flex justify-center item-center'>
+                <div className='h-52 md:min-h-[50vh] w-full flex justify-center item-center'>
                 {videoUrl && (
-                    <div className='m-10'>
+                    <div className=''>
                         <iframe
                             title="Video"
-                            className='w-full h-48'
+                            className='md:w-[80vw] max-md:w-[80vw] h-48 md:h-full'
                             src={videoUrl}
                             allowFullScreen
                         ></iframe>
@@ -119,7 +130,3 @@ const DIY = () => {
 }
 
 export default DIY
-
-
-
- 

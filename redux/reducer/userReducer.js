@@ -5,13 +5,16 @@ import login from "../actions/actionLogin";
 import newAdmPanUser from "../actions/actionNewAdmPanUser";
 import { addFavorite, removeFavorite } from "../actions/actionFavorite"
 import { logout } from "../actions/actionLogout";
+import { actionToken } from "../actions/actionToken";
 
 const initialState = {
     user: {
         userName: null,
         role: 0,
         onLine: false,
-        email: null
+        photo: null,
+        email: null,
+        token:null
     },
     favorites: []
 }
@@ -43,7 +46,24 @@ const userReducer = createReducer(initialState, (builder) => {
                 ...state,
                 user: {
                     email: action.payload.response.user.email,
+                    photo: action.payload.response.user.photo,
+                    onLine: true,
                     role: action.payload.response.user.role,
+                    token: action.payload.response.token,
+                    
+                }
+            }
+        })
+        .addCase(actionToken.fulfilled, (state, action) => {
+            return {
+                ...state,
+                user: {
+                    email: action.payload.user.email,
+                    role: action.payload.user.role,
+                    onLine: true,
+                    photo: action.payload.user.photo,
+                    token: action.payload.token,
+                    
                 }
             }
         })
